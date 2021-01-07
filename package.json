@@ -1,0 +1,51 @@
+{
+  "name": "jampbot",
+  "description": "A feature-rich bot created for the Team Jamp discord",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "Lioness100",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "eslint src --ext ts --fix",
+    "start": "node .",
+    "start:pm2": "pm2 start pm2.ecosystem.yml",
+    "stop": "pm2 stop Jampbot++",
+    "dev": "ts-node --project src/tsconfig.json  --files src/index.ts",
+    "build": "tsc -b src",
+    "release": "standard-version"
+  },
+  "dependencies": {
+    "@typegoose/typegoose": "^7.4.6",
+    "discord-akairo": "^8.1.0",
+    "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.10.18"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/mongoose": "^5.10.3",
+    "@types/node": "^14.14.20",
+    "@types/ws": "^7.2.7",
+    "@typescript-eslint/eslint-plugin": "^4.12.0",
+    "@typescript-eslint/parser": "^4.12.0",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.2.1",
+    "standard-version": "^9.0.0",
+    "typescript": "^4.0.3"
+  },
+  "bin": {
+    "add-ext": "bin/extensions"
+  },
+  "engines": {
+    "node": ">=14",
+    "npm": ">=6"
+  }
+}

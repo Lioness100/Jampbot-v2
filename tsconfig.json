@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "lib": [],
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "composite": true,
+    "useDefineForClassFields": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "esModuleInterop": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}

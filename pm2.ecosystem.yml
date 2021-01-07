@@ -1,0 +1,3 @@
+apps:
+  name: 'Jampbot++'
+  script: './dist/index.js'
