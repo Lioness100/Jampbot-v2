@@ -1,6 +1,6 @@
 import { DocumentType, prop, ReturnModelType } from '@typegoose/typegoose';
-import { Leaderboard } from 'lib/utils/Constants';
 import type JampbotClient from '../lib/JampbotClient';
+import { Leaderboard } from '../lib/utils/Constants';
 import Entity from './Entity';
 
 export default class Levels extends Entity {
