@@ -1,10 +1,10 @@
-**Please describe the changes this PR makes and why it should be merged:**
+# Please describe the changes this PR makes and why it should be merged:
 
-**Status**
+## Status
 
 - [ ] Code changes have been tested against my own code, or there are no code changes
 
-**Type**
+## Type
 
 - [ ] Bugfix
 - [ ] Enhancement
