@@ -3,9 +3,14 @@
   "description": "A feature-rich bot created for the Team Jamp discord",
   "version": "1.0.1",
   "main": "dist/index.js",
-  "author": "Lioness100",
   "license": "MIT",
   "private": true,
+  "author": {
+    "name": "Lioness100",
+    "email": "jchickmm2@gmail.com",
+    "url": "https://github.com/Lioness100"
+  },
+  "bugs": "https://github.com/Lioness100/Jampbot-v2/issues",
   "scripts": {
     "lint": "eslint src --ext ts --fix",
     "start": "node .",
