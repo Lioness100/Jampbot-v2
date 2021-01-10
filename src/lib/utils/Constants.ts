@@ -6,26 +6,20 @@ export const logLevels = {
   debug: '\x1b[32m',
 };
 
-export type DateMeasure =
-  | 'Date'
-  | 'Day'
-  | 'FullYear'
-  | 'Hours'
-  | 'Milliseconds'
-  | 'Minutes'
-  | 'Month'
-  | 'Seconds'
-  | 'Time'
-  | 'TimezoneOffset'
-  | 'UTCDate'
-  | 'UTCDay'
-  | 'UTCFullYear'
-  | 'UTCHours'
-  | 'UTCMilliseconds'
-  | 'UTCMinutes'
-  | 'UTCMonth'
-  | 'UTCSeconds'
-  | 'Year';
+export const channels = {
+  welcome: '710497845278670989',
+  log: '699230720392167482',
+  rules: '699220667484078131',
+};
+
+export const emotes = {
+  pog: '<:PridePog:796585159607975947>',
+  sad: '<:SadBowser:717925128331329607>',
+};
+
+export const roles = {
+  member: '699232048644227115',
+};
 
 export interface Leaderboard {
   xp: number;
