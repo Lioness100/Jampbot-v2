@@ -1,7 +1,7 @@
 {
   "name": "jampbot",
   "description": "A feature-rich bot created for the Team Jamp discord",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "license": "MIT",
   "private": true,
@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@typegoose/typegoose": "^7.4.6",
+    "canvas": "^2.6.1",
+    "date-fns": "^2.16.1",
     "discord-akairo": "^8.1.0",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
