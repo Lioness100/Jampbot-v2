@@ -21,4 +21,4 @@ To get ready to work on the codebase, please do the following:
 
 When committing to github, we use husky, commitlint, and lint-staged to make sure all content is up to standards. Make sure all tests pass!
 
-6. ]Submit a pull request](./PULL_REQUEST_TEMPLATE)
+6. [Submit a pull request](./PULL_REQUEST_TEMPLATE)
