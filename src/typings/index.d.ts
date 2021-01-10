@@ -1,24 +1,22 @@
 import {
   CommandHandler,
   ListenerHandler,
-  InhibitorHandler,
+  InhibitorHndler,
 } from 'discord-akairo';
 import Database from '../lib/structures/Database';
+import EnhancedEmbed from '../lib/structures/EnhancedEmbed';
 import { Logger } from '../lib/utils/Logger';
 
 declare module 'discord-akairo' {
   interface AkairoClient {
     logger: Logger;
     db: Database;
-    commandHandler: CommandHandler;
-    listenerHandler: ListenerHandler;
-    inhibitorHandler: InhibitorHandler;
   }
 }
 
 declare module 'discord.js' {
   interface Message {
-    embed(title?: string): MessageEmbed;
+    embed(title?: string): EnhancedEmbed;
     error(message: string, explanation?: string): Promise<Message>;
   }
 }
