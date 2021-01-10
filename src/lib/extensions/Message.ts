@@ -1,16 +1,14 @@
-import { Structures, MessageEmbed, Message } from 'discord.js';
+import { Structures, Message } from 'discord.js';
+import EnhancedEmbed from '../structures/EnhancedEmbed';
 
 export default Structures.extend(
   'Message',
   () =>
     class extends Message {
       embed(title?: string) {
-        return new MessageEmbed()
+        return new EnhancedEmbed()
+          .personalize(this.author)
           .setColor('GREEN')
-          .setAuthor(
-            this.author.username,
-            this.author.displayAvatarURL({ dynamic: true })
-          )
           .setTitle(title);
       }
 
