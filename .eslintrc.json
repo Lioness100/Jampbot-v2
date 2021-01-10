@@ -23,6 +23,7 @@
     "@typescript-eslint/no-explicit-any": [
       "error",
       { "fixToUnknown": true, "ignoreRestArgs": true }
-    ]
+    ],
+    "@typescript-eslint/restrict-template-expressions": "off"
   }
 }
