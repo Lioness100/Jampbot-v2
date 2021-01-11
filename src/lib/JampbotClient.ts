@@ -6,6 +6,7 @@ import {
   ListenerHandler,
 } from 'discord-akairo';
 import { logger } from './utils/Logger';
+import TaskHandler from './structures/TaskHandler';
 import Database from './structures/Database';
 
 export default class JampbotClient extends AkairoClient {
@@ -18,6 +19,7 @@ export default class JampbotClient extends AkairoClient {
     prefix: '!',
     allowMention: true,
     defaultCooldown: 1000,
+    automateCategories: true,
   });
 
   public inhibitorHandler = new InhibitorHandler(this, {
@@ -26,6 +28,11 @@ export default class JampbotClient extends AkairoClient {
 
   public listenerHandler = new ListenerHandler(this, {
     directory: join(__dirname, '..', 'listeners'),
+    automateCategories: true,
+  });
+
+  public taskHandler = new TaskHandler(this, {
+    directory: join(__dirname, '..', 'tasks'),
   });
 
   public constructor() {
@@ -38,6 +45,8 @@ export default class JampbotClient extends AkairoClient {
         },
       },
       disableMentions: 'everyone',
+      messageCacheMaxSize: 1,
+      messageEditHistoryMaxSize: 1,
       ws: {
         properties: {
           $browser: 'Discord Android',
@@ -71,6 +80,9 @@ export default class JampbotClient extends AkairoClient {
     });
     this.listenerHandler.loadAll();
     logger.info(`Loaded ${this.listenerHandler.modules.size} listeners`);
+
+    this.taskHandler.loadAll();
+    logger.info(`Loaded ${this.taskHandler.modules.size} tasks`);
 
     await this.db.init();
     logger.info('Established connection to database');

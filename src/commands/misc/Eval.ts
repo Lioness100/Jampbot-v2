@@ -11,7 +11,6 @@ interface Args {
 @ApplyOptions<CommandOptions>('eval', {
   aliases: ['eval'],
   description: '',
-  category: 'eval',
   ownerOnly: true,
   args: [
     { id: 'code', match: 'text' },

@@ -8,7 +8,6 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 @ApplyOptions<ListenerOptions>('guildMemberRemove', {
   emitter: 'client',
   event: 'guildMemberRemove',
-  category: 'client',
 })
 export default class GuildMemberRemove extends Listener {
   public exec(member: GuildMember): void {

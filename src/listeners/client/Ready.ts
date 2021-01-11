@@ -4,7 +4,6 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 @ApplyOptions<ListenerOptions>('ready', {
   emitter: 'client',
   event: 'ready',
-  category: 'client',
 })
 export default class Ready extends Listener {
   public exec(): void {

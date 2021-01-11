@@ -5,7 +5,6 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 @ApplyOptions<CommandOptions>('ping', {
   aliases: ['ping'],
   description: "View the client's ping",
-  category: 'misc',
 })
 export default class Ping extends Command {
   public exec(message: Message): void {

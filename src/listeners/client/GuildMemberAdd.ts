@@ -9,7 +9,6 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 @ApplyOptions<ListenerOptions>('guildMemberAdd', {
   emitter: 'client',
   event: 'guildMemberAdd',
-  category: 'client',
 })
 export default class GuildMemberAdd extends Listener {
   public async exec(member: GuildMember): Promise<void> {
