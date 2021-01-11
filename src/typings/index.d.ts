@@ -12,6 +12,11 @@ declare module 'discord-akairo' {
     logger: Logger;
     db: Database;
   }
+
+  interface Command {
+    blockedChannels?: string[];
+    allowedChannels?: string[];
+  }
 }
 
 declare module 'discord.js' {
