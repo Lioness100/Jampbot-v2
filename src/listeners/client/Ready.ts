@@ -7,6 +7,8 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 })
 export default class Ready extends Listener {
   public exec(): void {
-    this.client.logger.info(`Bot logged in as ${this.client.user.tag}`);
+    this.client.logger.info(
+      `Bot logged in as ${this.client.user?.tag ?? 'Unknown#0000'}`
+    );
   }
 }
