@@ -1,8 +1,10 @@
+import type { Headers } from 'node-fetch';
+
 export const logLevels = {
-  fatal: '\x1b[41m\x1b[30m\x1b[1m',
-  error: '\x1b[41m',
-  warn: '\x1b[43m',
-  info: '\x1b[44m',
+  fatal: '\x1b[31m\x1b[30m\x1b[1m',
+  error: '\x1b[31m',
+  warn: '\x1b[33m',
+  info: '\x1b[34m',
   debug: '\x1b[32m',
 };
 
@@ -37,8 +39,15 @@ export interface Leaderboard {
   tag: string;
 }
 
-export type ReadonlyArray = readonly unknown[];
-
-export type Constructor<T> = new (...args: any[]) => T;
+export type Response =
+  | {
+      status: number;
+      headers: Headers;
+      body: Buffer | Record<string, unknown>;
+    }
+  | {
+      status: number;
+      text: string;
+    };
 
 export const blacklist: string[] = [];

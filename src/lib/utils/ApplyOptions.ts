@@ -1,5 +1,4 @@
 import { AkairoModule, AkairoModuleOptions } from 'discord-akairo';
-import type { Constructor } from './Constants';
 
 const createClassDecorator = <T extends (...args: any[]) => void>(
   fn: T
@@ -10,7 +9,7 @@ export default function ApplyOptions<T extends AkairoModuleOptions>(
   options?: T
 ): ClassDecorator {
   return createClassDecorator(
-    (target: Constructor<AkairoModule>) =>
+    (target: new (...args: any[]) => AkairoModule) =>
       class extends target {
         public constructor() {
           super(id, options);

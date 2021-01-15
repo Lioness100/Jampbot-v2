@@ -7,7 +7,33 @@ import ApplyOptions from '../lib/utils/ApplyOptions';
 @ApplyOptions<TaskOptions>('sweeper', { rule: measures.daily })
 export default class Sweeper extends Task {
   public exec(): void {
-    const stats = {
+    this.client.guilds.cache.each((guild) => {
+      this.clear(guild, 'presences');
+      this.clear(guild, 'members');
+      this.clear(guild, 'voiceStates');
+    });
+
+    this.clear(this.client, 'channels');
+    this.clear(this.client, 'emojis');
+    this.clear(this.client, 'users');
+
+    this.client.logger.info(
+      `Sweeped ${Object.entries(this.stats)
+        .map(([manager, amount]) => `${amount} ${manager.replace(/s$/, '(s)')}`)
+        .join(', ')}`
+    );
+  }
+
+  private clear(structure: Guild | AkairoClient, manager: string) {
+    const { cache } = ({ ...structure } as Record<string, unknown>)[
+      manager
+    ] as BaseManager<unknown, unknown, unknown>;
+    this.stats[manager] += cache.size;
+    cache.clear();
+  }
+
+  private get stats(): Record<string, number> {
+    return {
       presences: 0,
       members: 0,
       channels: 0,
@@ -17,33 +43,5 @@ export default class Sweeper extends Task {
       users: 0,
       voiceStates: 0,
     };
-
-    const clear = (structure: Guild | AkairoClient, manager: string) => {
-      const { cache } = structure[manager] as BaseManager<
-        unknown,
-        unknown,
-        unknown
-      >;
-      stats[manager] += cache.size;
-      cache.clear();
-    };
-
-    this.client.guilds.cache.each((guild) => {
-      clear(guild, 'presences');
-      clear(guild, 'members');
-      clear(guild, 'roles');
-      clear(guild, 'voiceStates');
-    });
-
-    clear(this.client, 'channels');
-    clear(this.client, 'emojis');
-    clear(this.client, 'guilds');
-    clear(this.client, 'users');
-
-    this.client.logger.info(
-      `Sweeped ${Object.entries(stats)
-        .map(([manager, amount]) => `${amount} ${manager.replace(/s$/, '(s)')}`)
-        .join(', ')}`
-    );
   }
 }
