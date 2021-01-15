@@ -13,7 +13,7 @@ export default class Database {
 
   public async init(): Promise<void> {
     try {
-      void mongoose.connect(process.env.MONGO_URI, {
+      void mongoose.connect(process.env.MONGO_URI!, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
