@@ -8,7 +8,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 })
 export default class Ping extends Command {
   public exec(message: Message): void {
-    void message.channel.send(
+    void message.util!.send(
       message.embed(`:ping_pong:  Pong! My ping is ${this.client.ws.ping}ms!`)
     );
   }

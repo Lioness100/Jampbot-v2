@@ -5,34 +5,37 @@ import {
   InhibitorHandler,
   ListenerHandler,
 } from 'discord-akairo';
-import { logger } from './utils/Logger';
-import TaskHandler from './structures/TaskHandler';
-import Database from './structures/Database';
+import { JampbotUtil, logger } from '../utils';
+import { TaskHandler, Database } from '.';
 
 export default class JampbotClient extends AkairoClient {
   public logger = logger;
 
   public db = new Database();
 
-  public commandHandler = new CommandHandler(this, {
-    directory: join(__dirname, '..', 'commands'),
-    prefix: '!',
-    allowMention: true,
-    defaultCooldown: 1000,
+  public util = new JampbotUtil(this);
+
+  public commandHandler: CommandHandler = new CommandHandler(this, {
+    directory: join(__dirname, '../../commands'),
+    defaultCooldown: 1e3,
+    automateCategories: true,
+    handleEdits: true,
+    commandUtil: true,
+    commandUtilLifetime: 6e4,
+    commandUtilSweepInterval: 6e4,
+  });
+
+  public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
+    directory: join(__dirname, '../../inhibitors'),
+  });
+
+  public listenerHandler: ListenerHandler = new ListenerHandler(this, {
+    directory: join(__dirname, '../../listeners'),
     automateCategories: true,
   });
 
-  public inhibitorHandler = new InhibitorHandler(this, {
-    directory: join(__dirname, '..', 'inhibitors'),
-  });
-
-  public listenerHandler = new ListenerHandler(this, {
-    directory: join(__dirname, '..', 'listeners'),
-    automateCategories: true,
-  });
-
-  public taskHandler = new TaskHandler(this, {
-    directory: join(__dirname, '..', 'tasks'),
+  public taskHandler: TaskHandler = new TaskHandler(this, {
+    directory: join(__dirname, '../../tasks'),
   });
 
   public constructor() {

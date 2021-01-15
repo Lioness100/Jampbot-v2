@@ -10,8 +10,9 @@ interface Args {
 
 @ApplyOptions<CommandOptions>('eval', {
   aliases: ['eval'],
-  description: '',
+  description: 'Evaluate Javascript code',
   ownerOnly: true,
+  hidden: true,
   args: [
     { id: 'code', match: 'text' },
     { id: 'silent', match: 'flag', flag: ['--s', '--silent'] },
@@ -19,8 +20,8 @@ interface Args {
 })
 export default class Eval extends Command {
   public async exec(message: Message, args: Args): Promise<void> {
-    let error: string;
-    let result: string;
+    let error: unknown;
+    let result = '';
     try {
       result = Util.escapeCodeBlock(
         inspect(
@@ -32,14 +33,14 @@ export default class Eval extends Command {
         )
       );
     } catch (err: unknown) {
-      error = err.toString();
+      error = err;
     } finally {
       if (args.silent) {
         if (error) this.client.logger.info('Eval error: ', error);
         return void message.delete();
       }
 
-      void message.channel.send(
+      void message.util!.send(
         new MessageEmbed()
           .setColor(error ? 'RED' : 'GREEN')
           .setAuthor("Lioness' Eval Results", message.author.displayAvatarURL())
