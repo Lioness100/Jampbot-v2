@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.2.0...v1.3.0) (2021-01-15)
+
+
+### Features
+
+* **command:** :sparkles: more command handling ([e58ac84](https://github.com/Lioness100/Jampbot-v2/commit/e58ac847ee24ba9afa43c91ba039af3602568e64))
+* :construction: util class for misc functions ([bf7a742](https://github.com/Lioness100/Jampbot-v2/commit/bf7a742d267894028921bf9b95c4123d9d507e32))
+* :memo: stats stuff ([ebf1988](https://github.com/Lioness100/Jampbot-v2/commit/ebf19882b1c7e089df26296c66057489fc8c6437))
+* :sparkles: started using command util ([eca1248](https://github.com/Lioness100/Jampbot-v2/commit/eca1248360beaa2d5004f7aaa576b7124720f778))
+
+
+### Bug Fixes
+
+* :art: strict mode fixes ([1ced905](https://github.com/Lioness100/Jampbot-v2/commit/1ced90580de8feb6962d0520c1e81e0fe399be0a))
+* :rotating_light: linters are jank ([4772d9e](https://github.com/Lioness100/Jampbot-v2/commit/4772d9e1ca60e54a385c8d32d16f7b7e86e92e15))
+
 ## [1.2.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.1.0...v1.2.0) (2021-01-11)
 
 
