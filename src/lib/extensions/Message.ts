@@ -1,4 +1,5 @@
 import { Structures, Message } from 'discord.js';
+import { emotes } from '../utils/Constants';
 import EnhancedEmbed from '../structures/EnhancedEmbed';
 
 export default Structures.extend(
@@ -12,11 +13,11 @@ export default Structures.extend(
           .setTitle(title);
       }
 
-      error(message: string, explanation?: string) {
-        return this.channel.send(
+      error(message: string, explanation?: string, useUtil = true) {
+        return this[this.util && useUtil ? 'util' : 'channel']!.send(
           this.embed()
             .setColor('RED')
-            .setTitle(`:x: ${message} :x:`)
+            .setTitle(`:x: ${message} ${emotes.sad}`)
             .setDescription(explanation)
         );
       }
