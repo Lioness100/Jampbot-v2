@@ -10,21 +10,13 @@ export class Logger {
     this.streams = Object.keys(logLevels).map((level) =>
       fs.createWriteStream(`./logs/${level}.log`, { flags: 'a' })
     );
-    this.streams.forEach((stream) =>
-      stream.write(
-        `\n\n-------------[${format(
-          new Date(),
-          '[dd/MM/yyyy H:mm:s]'
-        )}]-------------\n\n`
-      )
-    );
   }
 
   private write(content: unknown[], level: keyof typeof logLevels) {
     console.log(this.format(content, level, true));
     this.streams
       .find((stream) => stream.path.includes(level))
-      .write(this.format(content, level));
+      ?.write(this.format(content, level));
   }
 
   public fatal(...content: any[]): void {
