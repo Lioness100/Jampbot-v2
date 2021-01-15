@@ -6,10 +6,10 @@ import { logger } from '../lib/utils/Logger';
 })
 export default abstract class Entity {
   @prop()
-  public id: string;
+  public id!: string;
 
   @prop({ default: new Date() })
-  public lastUpdated: Date;
+  public lastUpdated!: Date;
 
   protected logger = logger;
 }

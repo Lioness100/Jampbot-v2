@@ -1,14 +1,14 @@
 import { DocumentType, prop, ReturnModelType } from '@typegoose/typegoose';
-import type JampbotClient from '../lib/JampbotClient';
+import type JampbotClient from '../lib/structures/JampbotClient';
 import { Leaderboard } from '../lib/utils/Constants';
 import Entity from './Entity';
 
 export default class Levels extends Entity {
   @prop({ default: 0 })
-  public xp: number;
+  public xp!: number;
 
   @prop({ default: 0 })
-  public level: number;
+  public level!: number;
 
   public static levelFor(xp: number): number {
     return ~~(0.1 * Math.sqrt(xp));
@@ -24,12 +24,14 @@ export default class Levels extends Entity {
     limit = 10
   ): Promise<Leaderboard[]> {
     const leaderboard = await this.find({}).limit(limit).sort('xp');
-    return leaderboard.map(({ id, xp, level }, idx) => ({
-      xp,
-      level,
-      position: idx + 1,
-      tag: client.users.cache.get(id).tag || 'Unkown#0000',
-    }));
+    return Promise.all(
+      leaderboard.map(async ({ id, xp, level }, idx) => ({
+        xp,
+        level,
+        position: idx + 1,
+        tag: (await client.users.fetch(id)).tag || 'Unkown#0000',
+      }))
+    );
   }
 
   public async append(
