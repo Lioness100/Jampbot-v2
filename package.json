@@ -19,7 +19,8 @@
     "dev": "ts-node --project src/tsconfig.json  --files src/index.ts",
     "build": "tsc -b src",
     "push": "git push origin main",
-    "release": "standard-version"
+    "release": "standard-version",
+    "install": "npm i $npm_config_package && npm i -D @types/$npm_config_package"
   },
   "dependencies": {
     "@typegoose/typegoose": "^7.4.7",
