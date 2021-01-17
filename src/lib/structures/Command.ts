@@ -32,7 +32,7 @@ export default abstract class JampbotCommand extends Command {
 
     this.args = Array.isArray(args) ? args.slice(1) : args;
     this.examples = examples;
-    this.hidden = hidden;
+    this.hidden = this.ownerOnly || hidden;
     this.usage = usage;
   }
 

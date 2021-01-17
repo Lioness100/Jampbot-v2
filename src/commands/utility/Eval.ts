@@ -13,7 +13,6 @@ interface Args {
   aliases: ['eval', 'evaluate'],
   description: 'Evaluate Javascript code',
   ownerOnly: true,
-  hidden: true,
   args: [
     { id: 'code', match: 'text' },
     { id: 'silent', match: 'flag', flag: ['--s', '--silent'] },

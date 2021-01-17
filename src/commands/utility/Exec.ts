@@ -13,7 +13,6 @@ interface Args {
   aliases: ['exec', 'execute', 'shell'],
   description: 'Execute command in the shell',
   ownerOnly: true,
-  hidden: true,
   args: [
     { id: 'command', match: 'text', default: 'echo "no command specified"' },
     { id: 'silent', match: 'flag', flag: ['--s', '--silent'] },
