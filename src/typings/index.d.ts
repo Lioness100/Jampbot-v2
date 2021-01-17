@@ -1,28 +1,12 @@
-import type {
-  CommandHandler,
-  ListenerHandler,
-  InhibitorHandler,
-  ArgumentOptions,
-  ArgumentGenerator,
-  CommandUtil,
-} from 'discord-akairo';
-import type {
-  GuildMember,
-  EmbedFieldData,
-  MessageEmbedOptions,
-} from 'discord.js';
-import type { Response } from '../lib/utils/Constants';
-import type { TaskHandler, Database, EnhancedEmbed } from '../lib/structures';
-import type { Logger } from '../lib/utils/Logger';
-
+/* eslint-disable import/order */
 declare module 'discord-akairo' {
   interface AkairoClient {
-    logger: Logger;
-    db: Database;
-    commandHandler: CommandHandler;
-    listenerHandler: ListenerHandler;
-    inhibitorHandler: InhibitorHandler;
-    taskHandler: TaskHandler;
+    logger: import('../lib/utils/Logger').Logger;
+    db: import('../lib/structures/Database').default;
+    commandHandler: import('discord-akairo').CommandHandler;
+    listenerHandler: import('discord-akairo').ListenerHandler;
+    inhibitorHandler: import('discord-akairo').InhibitorHandler;
+    taskHandler: import('discord-akairo').TaskHandler;
   }
 
   interface Command {
@@ -31,7 +15,9 @@ declare module 'discord-akairo' {
     examples?: string[];
     hidden?: boolean;
     usage?: string;
-    args: ArgumentOptions[] | ArgumentGenerator;
+    args:
+      | import('discord-akairo').ArgumentOptions[]
+      | import('discord-akairo').ArgumentGenerator;
   }
 
   interface CommandOptions {
@@ -43,17 +29,28 @@ declare module 'discord-akairo' {
   }
 
   interface ClientUtil {
-    getMemberInfo(member: GuildMember): EmbedFieldData[];
-    embed(data?: MessageEmbedOptions): EnhancedEmbed;
-    fetch(url: string): Promise<Response>;
+    getMemberInfo(member: GuildMember): import('discord.js').EmbedFieldData[];
+    embed(
+      data?: MessageEmbedOptions
+    ): import('../lib/structures/EnhancedEmbed').default;
+    fetch(url: string): Promise<import('../lib/utils/Constants').Response>;
     upper(string: string): string;
+    sample<T>(arr: T[]): T;
+    tap<T>(value: T): T;
   }
 }
 
 declare module 'discord.js' {
   interface Message {
-    util: CommandUtil;
-    embed(title?: string): EnhancedEmbed;
-    error(message: string, explanation?: string): Promise<Message>;
+    util: import('discord-akairo').CommandUtil;
+    embed(title?: string): import('../lib/structures/EnhancedEmbed').default;
+    error(
+      message: string,
+      explanation?: string
+    ): Promise<import('discord.js').Message>;
   }
+}
+
+declare module 'colorthief' {
+  export function getColor(image: string): Promise<[number, number, number]>;
 }
