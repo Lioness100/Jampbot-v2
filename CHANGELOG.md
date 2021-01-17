@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.3.0...v1.4.0) (2021-01-17)
+
+
+### Features
+
+* **command:** :sparkles: added exec command ([a939fd7](https://github.com/Lioness100/Jampbot-v2/commit/a939fd7e2980c30805a09a854c340bda6d0a60ee))
+* **command:** :sparkles: added time command ([a87add1](https://github.com/Lioness100/Jampbot-v2/commit/a87add19f85c925f9f8fc99515c73c0596c2f4af))
+* **command:** :sparkles: wolfram query command ([9a349cd](https://github.com/Lioness100/Jampbot-v2/commit/9a349cd128dfa3133756fa03a19905aa70f5347e))
+* **command:** :truck: cmd metadata + !help ([3ffd9e8](https://github.com/Lioness100/Jampbot-v2/commit/3ffd9e8763362c8a8620357eed928996b48209ae))
+
+
+### Bug Fixes
+
+* :memo: corrected typings ([a18b212](https://github.com/Lioness100/Jampbot-v2/commit/a18b212098bacdfea1e929b2d3e59673793785c5))
+* **listener:** :loud_sound: better logging ([be8c889](https://github.com/Lioness100/Jampbot-v2/commit/be8c889b6bad01a364868b1329315b077b0d3fe8))
+* :wrench: updated lib ([d98f967](https://github.com/Lioness100/Jampbot-v2/commit/d98f96734665503a3749c76e028c3bcafa254d42))
+
 ## [1.3.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.2.0...v1.3.0) (2021-01-15)
 
 
