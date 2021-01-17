@@ -2,6 +2,8 @@ import type {
   CommandHandler,
   ListenerHandler,
   InhibitorHandler,
+  ArgumentOptions,
+  ArgumentGenerator,
   CommandUtil,
 } from 'discord-akairo';
 import type {
@@ -9,7 +11,7 @@ import type {
   EmbedFieldData,
   MessageEmbedOptions,
 } from 'discord.js';
-import type { Response } from 'lib/utils/Constants';
+import type { Response } from '../lib/utils/Constants';
 import type { TaskHandler, Database, EnhancedEmbed } from '../lib/structures';
 import type { Logger } from '../lib/utils/Logger';
 
@@ -24,11 +26,17 @@ declare module 'discord-akairo' {
   }
 
   interface Command {
-    blockedChannels?: string[];
-    allowedChannels?: string[];
+    blockedChannels?: string[] | 'default';
+    allowedChannels?: string[] | 'default';
+    examples?: string[];
+    hidden?: boolean;
+    usage?: string;
+    args: ArgumentOptions[] | ArgumentGenerator;
   }
 
   interface CommandOptions {
+    blockedChannels?: string[] | 'default';
+    allowedChannels?: string[] | 'default';
     examples?: string[];
     hidden?: boolean;
     usage?: string;
@@ -38,6 +46,7 @@ declare module 'discord-akairo' {
     getMemberInfo(member: GuildMember): EmbedFieldData[];
     embed(data?: MessageEmbedOptions): EnhancedEmbed;
     fetch(url: string): Promise<Response>;
+    upper(string: string): string;
   }
 }
 
