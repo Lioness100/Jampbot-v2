@@ -17,6 +17,7 @@
     "start": "node .",
     "test": "echo \"No tests yet\"",
     "dev": "ts-node --project src/tsconfig.json  --files src/index.ts",
+    "prebuild": "rm -rf dist",
     "build": "tsc -b src",
     "push": "git push origin main",
     "release": "standard-version",
