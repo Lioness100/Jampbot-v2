@@ -74,6 +74,6 @@ export default class Query extends Command {
 
     if (output.img) embed.setImage(output.img.src);
 
-    void message.channel.send(embed);
+    void message.util!.send(embed);
   }
 }
