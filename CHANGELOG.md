@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.4.0...v1.5.0) (2021-01-17)
+
+
+### Features
+
+* **command:** :sparkles: 8ball command ([762d1b1](https://github.com/Lioness100/Jampbot-v2/commit/762d1b16342b2b376f25feb2d3081ab1de9af6f3))
+* **command:** :sparkles: dikdik for tib ([27919bc](https://github.com/Lioness100/Jampbot-v2/commit/27919bcca983879fcddf712c77867c065c0448e4))
+* **command:** :sparkles: level idea command ([8196808](https://github.com/Lioness100/Jampbot-v2/commit/8196808f00661d8297cad81886c5f578aca90079))
+* **command:** :sparkles: new reload command ([5aa3cf6](https://github.com/Lioness100/Jampbot-v2/commit/5aa3cf604fb757f5b48c0997b9c07e59c9b10652))
+* **command:** :sparkles: quag command ([9a73dc5](https://github.com/Lioness100/Jampbot-v2/commit/9a73dc549aba202580c5a262711559aaa88e6d6d))
+
+
+### Bug Fixes
+
+* :memo: updated typings ([a9223da](https://github.com/Lioness100/Jampbot-v2/commit/a9223dad7e4b236822b912308edaeacdea715ca0))
+* **command:** :bug: embed limits ([5978e6b](https://github.com/Lioness100/Jampbot-v2/commit/5978e6b58fd9d788537df285b49161629c5bf3b1))
+* **command:** :fire: simplified command ctor ([ef6c421](https://github.com/Lioness100/Jampbot-v2/commit/ef6c42110c0c3302005c94b33a3464da9644a2c1))
+* **command:** :zap: command util ([510142b](https://github.com/Lioness100/Jampbot-v2/commit/510142bc4afe643d5b45ea8e55f9a4fb6c20ee2b))
+* :construction_worker: updated tsconfig ([706bcc4](https://github.com/Lioness100/Jampbot-v2/commit/706bcc40e78f45c367f3b6d0d76013c59e15c4e4))
+* :hammer: quick rename ([f45b336](https://github.com/Lioness100/Jampbot-v2/commit/f45b336ee6d49f0c8f4597bf69de550c20dc7a13))
+
 ## [1.4.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.3.0...v1.4.0) (2021-01-17)
 
 
