@@ -9,7 +9,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 export default class CommandStarted extends Listener {
   public exec(message: Message, command: Command): void {
     this.client.logger.debug(
-      `${message.author.id} triggered command '${command.id}'`
+      `${message.author.tag} triggered command '${command.id}'`
     );
   }
 }

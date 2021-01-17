@@ -9,7 +9,9 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 export default class CommandError extends Listener {
   public exec(error: Error, message: Message, command?: Command): void {
     this.client.logger.error(
-      `Error occured with command: '${command?.id ?? 'N/A'}': ${error}`
+      `Error occured with command: '${command?.id ?? 'N/A'}': ${
+        error.stack || error
+      }`
     );
     void message.error(
       `An unexpected error occured!`,
