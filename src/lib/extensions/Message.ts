@@ -14,12 +14,11 @@ export default Structures.extend(
       }
 
       error(message: string, explanation?: string, useUtil = true) {
-        return this[this.util && useUtil ? 'util' : 'channel']!.send(
-          this.embed()
-            .setColor('RED')
-            .setTitle(`:x: ${message} ${emotes.sad}`)
-            .setDescription(explanation)
+        const embed = this.embed(`:x: ${message} ${emotes.sad}`).setColor(
+          'RED'
         );
+        if (explanation) embed.setDescription(explanation);
+        return this[this.util && useUtil ? 'util' : 'channel']!.send(embed);
       }
     }
 );

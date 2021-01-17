@@ -3,7 +3,7 @@ import type { Message } from 'discord.js';
 import { load } from 'cheerio';
 import { format } from 'date-fns';
 import ApplyOptions from '../../lib/utils/ApplyOptions';
-import { Response, clocks } from '../../lib/utils/Constants';
+import { clocks } from '../../lib/utils/Constants';
 import Command from '../../lib/structures/Command';
 
 interface Args {
@@ -20,19 +20,19 @@ interface Args {
 export default class Time extends Command {
   public async run(message: Message, { location }: Args): Promise<void> {
     if (!location) {
-      void message.error(
+      return void message.error(
         "You didn't provide a timezone/location to search for"
       );
-      return;
     }
 
-    const result = (await this.client.util.fetch(
+    const result = await this.client.util.fetch(
       encodeURI(`https://time.is/${location}`)
-    )) as Response;
+    );
 
     if (result.status !== 200) {
-      void message.error(`"${location}" is not a valid timezone/location`);
-      return;
+      return void message.error(
+        `"${location}" is not a valid timezone/location`
+      );
     }
 
     const $ = load(result.body as Buffer);

@@ -38,7 +38,7 @@ export default class JampbotUtil extends ClientUtil {
       },
       {
         name: 'Verified:',
-        value: member.roles.cache.has(roles.member),
+        value: this.upper(member.roles.cache.has(roles.member).toString()),
       },
       {
         name: 'Jamp Rank:',
@@ -75,5 +75,9 @@ export default class JampbotUtil extends ClientUtil {
           text: error.toString(),
         };
       });
+  }
+
+  public upper(string: string): string {
+    return string[0].toUpperCase() + string.slice(1);
   }
 }
