@@ -80,4 +80,13 @@ export default class JampbotUtil extends ClientUtil {
   public upper(string: string): string {
     return string[0].toUpperCase() + string.slice(1);
   }
+
+  public sample<T>(arr: T[]): T {
+    return arr[~~(Math.random() * arr.length)];
+  }
+
+  public tap<T>(value: T): T {
+    this.client.logger.debug(value);
+    return value;
+  }
 }

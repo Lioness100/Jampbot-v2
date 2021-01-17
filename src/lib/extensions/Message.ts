@@ -6,14 +6,16 @@ export default Structures.extend(
   'Message',
   () =>
     class extends Message {
-      embed(title?: string) {
-        return new EnhancedEmbed()
+      public embed(title?: string) {
+        const embed = new EnhancedEmbed()
           .personalize(this.author)
-          .setColor('GREEN')
-          .setTitle(title);
+          .setColor('GREEN');
+        if (title) embed.setTitle(title);
+
+        return embed;
       }
 
-      error(message: string, explanation?: string, useUtil = true) {
+      public error(message: string, explanation?: string, useUtil = true) {
         const embed = this.embed(`:x: ${message} ${emotes.sad}`).setColor(
           'RED'
         );

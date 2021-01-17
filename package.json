@@ -21,13 +21,13 @@
     "build": "tsc -b src",
     "push": "git push origin main",
     "push:tags": "git push --follow-tags origin main",
-    "release": "standard-version",
-    "install:types": "npm i $npm_config_package && npm i -D @types/$npm_config_package"
+    "release": "standard-version"
   },
   "dependencies": {
     "@typegoose/typegoose": "^7.4.7",
     "canvas": "^2.6.1",
     "cheerio": "^1.0.0-rc.5",
+    "colorthief": "^2.3.2",
     "common-tags": "^1.8.0",
     "date-fns": "^2.16.1",
     "discord-akairo": "^8.1.0",
