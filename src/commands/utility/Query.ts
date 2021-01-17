@@ -26,8 +26,8 @@ interface Args {
     {
       id: 'advanced',
       match: 'flag',
-      flag: ['--advanced', '--a'],
-      description: 'Include advanced information of your query',
+      flag: ['--advanced', '--a', '--detailed', '--d'],
+      description: 'Include a more detailed answer',
     },
   ],
 })
@@ -40,7 +40,7 @@ export default class Query extends Command {
     if (result.error) return void message.error("That's not a valid query");
     if (!result.success)
       return void message.error(
-        'Wolfram Alpha did not find any results for your guery',
+        'Wolfram Alpha did not find any results for your query',
         result.didyoumeans && `Did you mean "${result.didyoumeans.val}"?`
       );
 
@@ -57,20 +57,37 @@ export default class Query extends Command {
       { name: `${input.title}:`, value: input.subpods[0].plaintext },
       {
         name: `${title}:`,
-        value: output.plaintext || "Check the embed's image",
+        value:
+          output.plaintext ||
+          (advanced
+            ? "Check the embed's image"
+            : '<:ArrowD:718118799378874411>'),
       },
     ]);
 
-    if (advanced)
-      embed.addFields(
-        rest
-          .filter(({ subpods }) => subpods[0]?.plaintext)
-          .map((pod) => ({
-            name: `${pod.title}:`,
-            value: pod.subpods[0].plaintext,
-          }))
-          .slice(0, 23)
-      );
+    if (advanced) {
+      const fields = rest
+        .filter(({ subpods }) => subpods[0]?.plaintext)
+        .map((pod) => ({
+          name: `${pod.title}:`,
+          value: pod.subpods[0].plaintext,
+        }))
+        .slice(0, 23);
+
+      let count =
+        embed.fields.reduce(
+          (count, field) => (count += field.name.length + field.value.length),
+          0
+        ) + 10;
+      for (let idx = 0; idx < fields.length; idx++) {
+        if (
+          (count += fields[idx].name.length + fields[idx].value.length) > 6000
+        ) {
+          fields.splice(idx - 1, 1);
+        }
+      }
+      embed.addFields(fields);
+    }
 
     if (output.img) embed.setImage(output.img.src);
 
