@@ -22,7 +22,7 @@
     "push": "git push origin main",
     "push:tags": "git push --follow-tags origin main",
     "release": "standard-version",
-    "install": "npm i $npm_config_package && npm i -D @types/$npm_config_package"
+    "install:types": "npm i $npm_config_package && npm i -D @types/$npm_config_package"
   },
   "dependencies": {
     "@typegoose/typegoose": "^7.4.7",
