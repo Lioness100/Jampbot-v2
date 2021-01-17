@@ -1,20 +1,18 @@
 import os from 'os';
-import {
-  CommandOptions,
-  Command,
-  version as akairoVersion,
-} from 'discord-akairo';
+import { CommandOptions, version as akairoVersion } from 'discord-akairo';
 import { Message, version as djsVersion } from 'discord.js';
 import { stripIndent } from 'common-tags';
 import { formatDistanceToNowStrict } from 'date-fns';
 import ApplyOptions from '../../lib/utils/ApplyOptions';
+import Command from '../../lib/structures/Command';
 
 @ApplyOptions<CommandOptions>('stats', {
   aliases: ['stats', 'statistics'],
   description: "Shows you Jampbot++'s stats",
+  blockedChannels: 'default',
 })
 export default class Stats extends Command {
-  public exec(message: Message): void {
+  public run(message: Message): void {
     const {
       commandHandler,
       inhibitorHandler,
@@ -72,9 +70,9 @@ export default class Stats extends Command {
   }
 
   private getPrettyBytes(rss: number) {
-    const exponent = Math.min(Math.floor(Math.log10(rss) / 3), 8);
-    return `${(rss / Math.pow(1024, exponent)).toPrecision(
-      3
-    )} ${'MGTPEZY'.charAt(exponent - 1)}iB`;
+    const exponent = Math.min(~~(Math.log10(rss) / 3), 8);
+    return `${+(rss / 1000 ** exponent).toPrecision(3)} ${
+      'kMGTPEZY'[exponent - 1]
+    }B`;
   }
 }

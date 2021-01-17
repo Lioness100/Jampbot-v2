@@ -1,7 +1,8 @@
 import { inspect } from 'util';
-import { CommandOptions, Command } from 'discord-akairo';
+import type { CommandOptions } from 'discord-akairo';
 import { Message, MessageEmbed, Util } from 'discord.js';
 import ApplyOptions from '../../lib/utils/ApplyOptions';
+import Command from '../../lib/structures/Command';
 
 interface Args {
   code: string;
@@ -9,7 +10,7 @@ interface Args {
 }
 
 @ApplyOptions<CommandOptions>('eval', {
-  aliases: ['eval'],
+  aliases: ['eval', 'evaluate'],
   description: 'Evaluate Javascript code',
   ownerOnly: true,
   hidden: true,
@@ -19,8 +20,8 @@ interface Args {
   ],
 })
 export default class Eval extends Command {
-  public async exec(message: Message, args: Args): Promise<void> {
-    let error: unknown;
+  public async run(message: Message, args: Args): Promise<void> {
+    let error = false;
     let result = '';
     try {
       result = Util.escapeCodeBlock(
@@ -33,10 +34,11 @@ export default class Eval extends Command {
         )
       );
     } catch (err: unknown) {
-      error = err;
+      error = true;
+      result = `${err}`;
     } finally {
       if (args.silent) {
-        if (error) this.client.logger.info('Eval error: ', error);
+        if (error) this.client.logger.info('Eval error: ', result);
         return void message.delete();
       }
 
@@ -49,10 +51,9 @@ export default class Eval extends Command {
             {
               name: 'Output:',
               value: `\`\`\`js\n${
-                error ||
-                (result.length > 1016
-                  ? `The output's too large!`
-                  : Util.escapeCodeBlock(result))
+                result.length > 1024
+                  ? `${result.slice(0, 1021)}...`
+                  : Util.escapeCodeBlock(result)
               }\n\`\`\``,
             },
           ])

@@ -1,40 +1,49 @@
-import { Command, CommandOptions } from 'discord-akairo';
+import {
+  Command,
+  CommandOptions,
+  ArgumentOptions,
+  ArgumentGenerator,
+} from 'discord-akairo';
 import { Message } from 'discord.js';
 
-export default class JampbotCommand extends Command {
-  public examples: string[];
-  public hidden: boolean;
-  public usage: string;
+interface Args {
+  help: boolean;
+}
+
+export default abstract class JampbotCommand extends Command {
+  public examples?: string[];
+  public hidden?: boolean;
+  public usage?: string;
+  public args: ArgumentOptions[] | ArgumentGenerator;
 
   public constructor(id: string, options: CommandOptions = {}) {
-    options.args ||= [];
-    super(id, options);
+    const { examples, hidden, usage, args = [] } = options;
 
-    if (typeof options.args !== 'function') {
-      options.args ||= [];
-      options.args.unshift({
+    if (Array.isArray(args)) {
+      args.unshift({
         id: 'help',
         match: 'flag',
-        flag: ['--help', '-h'],
+        flag: ['--help', '--h'],
         description: 'Shows help information of this command.',
       });
     }
 
-    const exec = (message: Message, args: { help: boolean }) => {
-      if (args.help) {
-        this.handler.modules.get('help')?.exec(message, { command: this });
-        return;
-      }
+    super(id, { ...options, args });
 
-      this.exec(message, args);
-    };
-
-    this.exec = exec;
-
-    const { examples = [], hidden = false, usage = '' } = options;
-
+    this.args = Array.isArray(args) ? args.slice(1) : args;
     this.examples = examples;
     this.hidden = hidden;
     this.usage = usage;
   }
+
+  public exec(message: Message, args: Args): unknown {
+    if (args.help)
+      return this.handler.modules
+        .get('commands')
+        ?.exec(message, { command: this });
+
+    this.run(message, args);
+  }
+
+  public abstract run(message: Message, args: unknown): unknown;
 }

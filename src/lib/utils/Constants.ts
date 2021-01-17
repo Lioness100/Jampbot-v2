@@ -1,5 +1,20 @@
 import type { Headers } from 'node-fetch';
 
+export const clocks = [
+  '🕛',
+  '🕐',
+  '🕑',
+  '🕒',
+  '🕓',
+  '🕔',
+  '🕕',
+  '🕖',
+  '🕗',
+  '🕘',
+  '🕙',
+  '🕚',
+];
+
 export const logLevels = {
   fatal: '\x1b[31m\x1b[30m\x1b[1m',
   error: '\x1b[31m',
@@ -23,6 +38,26 @@ export const roles = {
   member: '699232048644227115',
 };
 
+export const generalChannels = [
+  '699220239698886679',
+  '699221859580903435',
+  '699222200787402762',
+  '699704365799440526',
+  '699672275854819408',
+  '699633909595635783',
+  '699221277008855071',
+];
+
+export const spamChannels = [
+  '699220239698886679',
+  '699222200787402762',
+  '699221277008855071',
+  '699612856018272289',
+  '699704365799440526',
+  '722174152357707776',
+  '699230720392167482',
+];
+
 export const measures = {
   yearly: '0 0 1 1 *',
   annually: '0 0 1 1 *',
@@ -32,6 +67,13 @@ export const measures = {
   hourly: '0 * * * *',
 };
 
+export const categories: Record<string, string> = {
+  info: '👀',
+  misc: '🤡',
+  utility: '🤖',
+  moderation: '🛠',
+};
+
 export interface Leaderboard {
   xp: number;
   level: number;
@@ -39,15 +81,11 @@ export interface Leaderboard {
   tag: string;
 }
 
-export type Response =
-  | {
-      status: number;
-      headers: Headers;
-      body: Buffer | Record<string, unknown>;
-    }
-  | {
-      status: number;
-      text: string;
-    };
+export interface Response {
+  status: number;
+  headers?: Headers;
+  body?: Buffer | Record<string, unknown>;
+  text?: string;
+}
 
 export const blacklist: string[] = [];
