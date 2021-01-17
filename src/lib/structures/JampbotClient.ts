@@ -23,6 +23,7 @@ export default class JampbotClient extends AkairoClient {
     commandUtil: true,
     commandUtilLifetime: 6e4,
     commandUtilSweepInterval: 6e4,
+    aliasReplacement: /-/g,
   });
 
   public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {

@@ -271,7 +271,6 @@ export const replies = [
   'Not my problem.',
   'Ask someone else.',
   'All I know is madlad go brrrrrr',
-  'I ethically disagree',
 ];
 
 export const dikdiks = [
