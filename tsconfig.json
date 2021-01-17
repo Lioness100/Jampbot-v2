@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2019",
-    "lib": ["ESNEXT"],
+    "lib": ["ES2019"],
     "moduleResolution": "node",
     "module": "commonjs",
-    "composite": true,
     "strict": true,
     "alwaysStrict": true,
     "useDefineForClassFields": true,
