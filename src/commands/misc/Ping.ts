@@ -9,8 +9,9 @@ import Command from '../../lib/structures/Command';
 })
 export default class Ping extends Command {
   public run(message: Message): void {
-    void message.util!.send(
-      message.embed(`:ping_pong:  Pong! My ping is ${this.client.ws.ping}ms!`)
+    message.embed(
+      `:ping_pong:  Pong! My ping is ${this.client.ws.ping}ms!`,
+      true
     );
   }
 }

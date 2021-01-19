@@ -38,9 +38,9 @@ export default class Query extends Command {
   public async run(message: Message, { query, advanced }: Args): Promise<void> {
     const result = await this.wolfram.calculate(query);
 
-    if (result.error) return void message.error("That's not a valid query");
+    if (result.error) return message.error("That's not a valid query");
     if (!result.success)
-      return void message.error(
+      return message.error(
         'Wolfram Alpha did not find any results for your query',
         result.didyoumeans && `Did you mean "${result.didyoumeans.val}"?`
       );

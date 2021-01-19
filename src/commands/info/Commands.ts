@@ -52,8 +52,7 @@ export default class Commands extends Command {
       await Promise.all(embeds.map((embed) => message.author.send(embed)));
       return void message.react('👍');
     } else {
-      if (command.hidden)
-        return void message.error(`This command is hidden 🙈`);
+      if (command.hidden) return message.error(`This command is hidden 🙈`);
       await message.author.send(
         message
           .embed(`Help for \`!${command.id}\``)

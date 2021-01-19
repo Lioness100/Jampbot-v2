@@ -27,8 +27,8 @@ export default class Exec extends Command {
           ? process.stdout.write(stdout)
           : process.stderr.write(stderr);
       }
-      void message.util!.send(
-        message.embed('Execution Results').addFields([
+      message.embed('Execution Results', (embed) =>
+        embed.addFields([
           { name: 'Command:', value: this.sh(`$ ${command}`) },
           { name: 'Stdout:', value: this.sh(stdout || 'No stdout') },
           { name: 'Stderr:', value: this.sh(stderr || 'No stderr') },

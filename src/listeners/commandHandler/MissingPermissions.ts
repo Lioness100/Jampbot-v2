@@ -17,7 +17,7 @@ export default class MissingPermissions extends Listener {
     this.client.logger.debug(
       commaListsAnd`${message.author.id} lacked the permissions ${missing} when executing command '${command.id}'`
     );
-    void message.error(
+    message.error(
       typeof missing === 'string'
         ? missing
         : commaListsAnd`You are missing the permissions ${missing.map(

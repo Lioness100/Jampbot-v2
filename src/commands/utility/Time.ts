@@ -20,7 +20,7 @@ interface Args {
 export default class Time extends Command {
   public async run(message: Message, { location }: Args): Promise<void> {
     if (!location) {
-      return void message.error(
+      return message.error(
         "You didn't provide a timezone/location to search for"
       );
     }
@@ -30,9 +30,7 @@ export default class Time extends Command {
     );
 
     if (result.status !== 200) {
-      return void message.error(
-        `"${location}" is not a valid timezone/location`
-      );
+      return message.error(`"${location}" is not a valid timezone/location`);
     }
 
     const $ = load(result.body as Buffer);
@@ -43,17 +41,16 @@ export default class Time extends Command {
       }`
     );
 
-    void message.util!.send(
-      message.embed(
-        `${clocks[date.getHours() % 12]}  It is currently ${format(
-          date,
-          'EEEE, MMMM Do yyyy @ h:mm a'
-        )}, in ${
-          /(?:Time in )?((?:[A-Z]\w+\s?)+) (?:now - Time\.is|- exact time now - Time\.is)/.exec(
-            $('title').contents()[0].data!
-          )?.[1] ?? location
-        }`
-      )
+    message.embed(
+      `${clocks[date.getHours() % 12]}  It is currently ${format(
+        date,
+        'EEEE, MMMM Do yyyy @ h:mm a'
+      )}, in ${
+        /(?:Time in )?((?:[A-Z]\w+\s?)+) (?:now - Time\.is|- exact time now - Time\.is)/.exec(
+          $('title').contents()[0].data!
+        )?.[1] ?? location
+      }`,
+      true
     );
   }
 }

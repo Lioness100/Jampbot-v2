@@ -13,9 +13,6 @@ export default class CommandError extends Listener {
         error.stack || error
       }`
     );
-    void message.error(
-      `An unexpected error occured!`,
-      `\`\`\`js\n${error}\n\`\`\``
-    );
+    message.error(`An unexpected error occured!`, `\`\`\`js\n${error}\n\`\`\``);
   }
 }

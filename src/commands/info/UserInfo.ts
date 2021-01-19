@@ -12,6 +12,7 @@ interface Args {
   description: "View a member's info",
   usage: '<member>',
   examples: ['@Lioness100#4566'],
+  channel: 'guild',
   args: [
     {
       id: 'member',

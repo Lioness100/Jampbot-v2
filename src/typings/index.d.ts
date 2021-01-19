@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 declare module 'discord-akairo' {
   interface AkairoClient {
     logger: import('../lib/utils/Logger').Logger;
@@ -43,11 +42,16 @@ declare module 'discord-akairo' {
 declare module 'discord.js' {
   interface Message {
     util: import('discord-akairo').CommandUtil;
-    embed(title?: string): import('../lib/structures/EnhancedEmbed').default;
-    error(
-      message: string,
-      explanation?: string
-    ): Promise<import('discord.js').Message>;
+    embed(
+      title?: string,
+      send:
+        | boolean
+        | ((
+            embed: import('../lib/structures/EnhancedEmbed').default
+          ) => unknown) = false,
+      useUtil = true
+    ): import('../lib/structures/EnhancedEmbed').default;
+    error(message: string, explanation?: string, useUtil = true): void;
   }
 }
 

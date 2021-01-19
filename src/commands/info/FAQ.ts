@@ -31,8 +31,8 @@ interface Args {
 export default class FAQ extends Command {
   public run(message: Message, { question, menu }: Args): void {
     if (menu)
-      return void message.util!.send(
-        message.embed('FAQ Menu').addFields(
+      return void message.embed('FAQ Menu', (embed) =>
+        embed.addFields(
           questions.map(({ key, desc }, idx) => ({
             name: `__**faq ${idx + 1} / faq ${key}**__`,
             value: desc,
@@ -41,14 +41,14 @@ export default class FAQ extends Command {
       );
 
     if (!question)
-      return void message.error(
+      return message.error(
         `Please provide the number/keyword of the FAQ to display! (\`!faq --menu\`)`
       );
 
     const faq = questions[+question - 1];
 
-    void message.util!.send(
-      message.embed(faq.desc).setDescription(faq.answer).setImage(faq.pic)
+    message.embed(faq.desc, (embed) =>
+      embed.setDescription(faq.answer).setImage(faq.pic)
     );
   }
 }

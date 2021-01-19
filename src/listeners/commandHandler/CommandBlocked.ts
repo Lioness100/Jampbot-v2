@@ -13,6 +13,6 @@ export default class commandBlocked extends Listener {
     );
 
     if (['dm', 'guild'].includes(reason))
-      void message.error(`You can only use this command in a ${reason}`);
+      message.error(`You can only use this command in a ${reason}`);
   }
 }

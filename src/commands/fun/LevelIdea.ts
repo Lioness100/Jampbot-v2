@@ -30,7 +30,7 @@ interface Chosen {
 export default class LevelIdea extends Command {
   public async run(message: Message, { style }: Args): Promise<void> {
     if (style && !(levelData.styles as string[]).includes(style))
-      return void message.error(`"${style}" is not a style!`);
+      return message.error(`"${style}" is not a style!`);
 
     const idea = () =>
       message.embed(

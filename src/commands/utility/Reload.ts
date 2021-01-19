@@ -21,17 +21,15 @@ interface Args {
 })
 export default class Reload extends Command {
   public run(message: Message, { module }: Args): void {
-    if (!module)
-      return void message.error("You didn't provide a valid module!");
+    if (!module) return message.error("You didn't provide a valid module!");
 
     try {
       module.reload();
-      void message.util!.send(
-        message.embed(
-          `The "${
-            module.id
-          }" ${module.handler.classToHandle.name.toLowerCase()} was reloaded!`
-        )
+      message.embed(
+        `The "${
+          module.id
+        }" ${module.handler.classToHandle.name.toLowerCase()} was reloaded!`,
+        true
       );
     } catch (e) {
       console.log(
@@ -39,7 +37,7 @@ export default class Reload extends Command {
           module.id
         }" ${module.handler.classToHandle.name.toLowerCase()}`
       );
-      void message.error('Something went wrong', `\`\`\`${e}\`\`\``);
+      message.error('Something went wrong', `\`\`\`${e}\`\`\``);
     }
   }
 }
