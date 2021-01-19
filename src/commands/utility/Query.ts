@@ -1,6 +1,7 @@
 import type { CommandOptions } from 'discord-akairo';
 import { Message } from 'discord.js';
 import { Command, WolframApp } from '../../lib/structures';
+import { emotes } from '../../lib/utils/Constants';
 import ApplyOptions from '../../lib/utils/ApplyOptions';
 
 interface Args {
@@ -59,9 +60,7 @@ export default class Query extends Command {
         name: `${title}:`,
         value:
           output.plaintext ||
-          (advanced
-            ? "Check the embed's image"
-            : '<:ArrowD:718118799378874411>'),
+          (advanced ? "Check the embed's image" : emotes.arrow.down),
       },
     ]);
 

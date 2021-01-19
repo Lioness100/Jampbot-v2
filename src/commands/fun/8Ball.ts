@@ -27,7 +27,7 @@ export default class EightBall extends Command {
         .embed(`The 8Ball Has Spoken ${emotes.hype}`)
         .setColor('RANDOM')
         .addFields([
-          { name: 'Question:', value: question },
+          { name: 'Question:', value: this.client.util.upper(question) },
           { name: 'Answer:', value: this.client.util.sample(replies) },
         ])
     );
