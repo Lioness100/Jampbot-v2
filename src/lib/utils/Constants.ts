@@ -23,16 +23,23 @@ export const logLevels = {
   debug: '\x1b[32m',
 };
 
-export const channels = {
+export const channels: Record<string, string> = {
   welcome: '710497845278670989',
   log: '699230720392167482',
+  'level-rules': '699220818374295633',
   rules: '699220667484078131',
+  spam: '701599142782304266',
+  links: '701858631221772329',
+  submittions: '699221099199594547',
 };
 
 export const emotes = {
   pog: '<:PridePog:796585159607975947>',
   sad: '<:SadBowser:717925128331329607>',
   hype: '<:KomodoHype:796594674029821962>',
+  arrow: {
+    down: 'ArrowD:718118799378874411>',
+  },
 };
 
 export const roles = {
@@ -442,4 +449,43 @@ export const quags = [
   'https://cdn.discordapp.com/attachments/719694477027180544/733033956810948729/20200715_133022.jpg',
   'https://cdn.discordapp.com/attachments/719694477027180544/733033957276385400/20200715_133002.jpg',
   'https://media.discordapp.net/attachments/719694477027180544/733033957570117742/20200715_132959.jpg',
+];
+
+export const questions = [
+  {
+    key: 'register',
+    desc: 'How to register in Team Jamp',
+    answer: `Before you're able to submit clears and levels, you must type \`!register nickname\` in <#${channels.spam}>. Your nickname will then appear on our website under the members tab, and you're all set for the next step ${emotes.pog}`,
+    pic:
+      'https://cdn.discordapp.com/attachments/699939038601150510/713438819269083167/InShot_20200522_130748930.jpg',
+  },
+  {
+    key: 'website',
+    desc: "How to login and use Team Jamp's website",
+    answer: `Links to useful pages on our website can be found in <#${channels.links}>. There you can find Team Jamp levels, worlds, leaderboard, and more. If you would like to be able to submit clears on the website, and filter through levels you've already cleared, you'll need to log in to your account.\n\nFirst, make sure you're registered, then use the \`!login\` command in <#${channels.spam}>. Make sure you have your DMs open so the bot can send you a link to your account ${emotes.pog}`,
+    pic:
+      'https://cdn.discordapp.com/attachments/699230720392167482/714805202602950747/InShot_20200526_074033748.jpg',
+  },
+  {
+    key: 'clears',
+    desc: 'How to submit clears',
+    answer: `To submit your clears, you can either use the Team Jamp website directly or use the \`!clear xxx-xxx-xxx\` command in <#${channels.spam}>. You will also get points for your clears, which will be added to your profile on the leaderboard, and can help you reach higher ranks in the discord.\n\nIn Team Jamp we use point scaling, meaning you might get a higher amount of points depending on how hard the level is. It's roughly graphed like so: \`1=1, 3.5=5, 10=20\`.\n\nAdditionally, check the pinned message in <#${channels.spam}> for extra clear-related commands ${emotes.pog}`,
+    pic:
+      'https://cdn.discordapp.com/attachments/699230720392167482/715284483208642580/Screenshot_20200527-152247.png',
+  },
+
+  {
+    key: 'levels',
+    desc: 'How to submit levels',
+    answer: `First, you should read <#${channels['level-rules']}> so you know what is required in a Team Jamp level. Then use the \`!add xxx-xxx-xxx <level style> <level name>\` command in <#${channels.submittions}>. Your level will then be displayed on the website as 'pending'.\n\nOnce the judges review the level and hopefully approve it, you will be notified and your level will be officially welcomed into Team Jamp. Additionally, check the pinned message in <#${channels.submittions}> for extra level-submission-related commands ${emotes.pog}`,
+    pic:
+      'https://cdn.discordapp.com/attachments/699230720392167482/715289245178265740/Screenshot_20200527-154113.png',
+  },
+  {
+    key: 'pending',
+    desc: 'What are pending levels',
+    answer: `When somebody submits a level, it will be added to the pending queue until at least 2 Jamp Judges review it. They will each either cast an approve, reject, or fix vote. Note that it might take a while for your level to be reviewed, as we have a lot of levels in the queue.\n\nIf you submit a clear for a pending level, you won't get any points. However, if/when the level is approved, points will automatically be distributed ${emotes.pog}`,
+    pic:
+      'https://cdn.discordapp.com/attachments/699230720392167482/716009530076561418/IMG_1590780366870.PNG',
+  },
 ];
