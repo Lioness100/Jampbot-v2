@@ -36,13 +36,10 @@ export default abstract class JampbotCommand extends Command {
     this.usage = usage;
   }
 
-  public exec(message: Message, args: Args): unknown {
+  public exec(message: Message, args: Args): void {
     if (args.help)
-      return this.handler.modules
-        .get('commands')
-        ?.exec(message, { command: this });
-
-    this.run(message, args);
+      this.handler.modules.get('commands')?.exec(message, { command: this });
+    else this.run(message, args);
   }
 
   public abstract run(message: Message, args: unknown): unknown;

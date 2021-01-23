@@ -18,6 +18,7 @@ interface Args {
       id: 'member',
       type: 'member',
       default: (message: Message) => message.member,
+      description: 'The member to view info of',
     },
   ],
 })

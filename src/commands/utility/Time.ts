@@ -7,7 +7,7 @@ import { clocks } from '../../lib/utils/Constants';
 import Command from '../../lib/structures/Command';
 
 interface Args {
-  location?: string;
+  location: string;
 }
 
 @ApplyOptions<CommandOptions>('time', {
@@ -15,16 +15,17 @@ interface Args {
   description: 'View the time in a different time zone',
   usage: '<timezone | location>',
   examples: ['pst', 'japan'],
-  args: [{ id: 'location', match: 'text' }],
+  args: [
+    {
+      id: 'location',
+      match: 'text',
+      description: 'The timezone/location to search for',
+      prompt: { start: 'Please provide a timezone/location to search for' },
+    },
+  ],
 })
 export default class Time extends Command {
   public async run(message: Message, { location }: Args): Promise<void> {
-    if (!location) {
-      return message.error(
-        "You didn't provide a timezone/location to search for"
-      );
-    }
-
     const result = await this.client.util.fetch(
       encodeURI(`https://time.is/${location}`)
     );

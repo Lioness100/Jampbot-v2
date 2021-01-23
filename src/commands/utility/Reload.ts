@@ -32,10 +32,11 @@ export default class Reload extends Command {
         true
       );
     } catch (e) {
-      console.log(
+      this.client.logger.error(
         `There was an error when reloading the "${
           module.id
-        }" ${module.handler.classToHandle.name.toLowerCase()}`
+        }" ${module.handler.classToHandle.name.toLowerCase()}: `,
+        e
       );
       message.error('Something went wrong', `\`\`\`${e}\`\`\``);
     }

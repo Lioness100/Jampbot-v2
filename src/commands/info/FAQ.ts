@@ -19,6 +19,10 @@ interface Args {
       id: 'question',
       type: questions.map(({ key }, idx) => [(idx + 1).toString(), key]),
       description: 'Number or keyword of the FAQ',
+      prompt: {
+        start:
+          'Please provide the number/keyword of the FAQ (or cancel and use `!faq --menu`)',
+      },
     },
     {
       id: 'menu',
@@ -29,20 +33,15 @@ interface Args {
   ],
 })
 export default class FAQ extends Command {
-  public run(message: Message, { question, menu }: Args): void {
+  public run(message: Message, { question, menu }: Args): unknown {
     if (menu)
-      return void message.embed('FAQ Menu', (embed) =>
+      return message.embed('FAQ Menu', (embed) =>
         embed.addFields(
           questions.map(({ key, desc }, idx) => ({
             name: `__**faq ${idx + 1} / faq ${key}**__`,
             value: desc,
           }))
         )
-      );
-
-    if (!question)
-      return message.error(
-        `Please provide the number/keyword of the FAQ to display! (\`!faq --menu\`)`
       );
 
     const faq = questions[+question - 1];

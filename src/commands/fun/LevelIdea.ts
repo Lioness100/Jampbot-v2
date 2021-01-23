@@ -18,10 +18,12 @@ interface Chosen {
   aliases: ['level-idea', 'makers-block'],
   description: 'Review an auto-generated level idea',
   blockedChannels: 'default',
+  usage: '[--style <style>]',
   args: [
     {
       id: 'style',
-      match: 'flag',
+      type: 'uppercase',
+      match: 'option',
       flag: ['--style', '--style='],
       description: 'Specifically look for ideas for a chosen game styles',
     },
@@ -37,7 +39,7 @@ export default class LevelIdea extends Command {
         `I think you should create a ${this.getRandomIdea(style)} ${emotes.pog}`
       );
 
-    const sent = await message.channel.send(idea());
+    const sent = await message.util!.send(idea());
     const selfReact = await sent.react('🔁');
 
     const collector = sent.createReactionCollector(
@@ -47,8 +49,15 @@ export default class LevelIdea extends Command {
     );
 
     collector.on('collect', (reaction: MessageReaction) => {
-      void reaction.users.remove(message.author.id);
-      void sent.edit(idea());
+      try {
+        void sent.edit(idea());
+        void reaction.users.remove(message.author.id);
+      } catch (err) {
+        void sent.edit(
+          message.embed("You're refreshing too fast!").setColor('RED')
+        );
+        void reaction.remove();
+      }
     });
 
     collector.on('end', () => {
@@ -63,7 +72,7 @@ export default class LevelIdea extends Command {
       others: [],
     };
 
-    if (Math.random() > 0.7) {
+    if (Math.random() > 0.7 || style) {
       chosen.style =
         style || this.client.util.sample(levelData.styles as string[]);
       this.filterElement([chosen.style]);
@@ -102,27 +111,17 @@ export default class LevelIdea extends Command {
       chosen.others.push(o);
     }
     let chosenString: string[] | string = [];
-    if (chosen.style) {
-      chosenString.push(chosen.style);
-    }
-    if (chosen.theme) {
-      chosenString.push(`Night ${chosen.theme}`);
-    }
-    if (chosenString.length) {
-      chosenString = `${chosenString.join(' ')} `;
-    } else {
-      chosenString = '';
-    }
+    if (chosen.style) chosenString.push(chosen.style);
+    if (chosen.theme) chosenString.push(`Night ${chosen.theme}`);
+    if (chosenString.length) chosenString = `${chosenString.join(' ')} `;
+    else chosenString = '';
 
     let chosenString2: string[] | string = [];
-    if (chosen.others) {
-      chosenString2 = chosenString2.concat(chosen.others);
-    }
-    if (chosenString2.length) {
+    if (chosen.others) chosenString2 = chosenString2.concat(chosen.others);
+    if (chosenString2.length)
       chosenString2 = ` with ${chosenString2.join(', ')}`;
-    } else {
-      chosenString2 = '';
-    }
+    else chosenString2 = '';
+
     return `${chosenString}Jamp level${chosenString2}`.replace(
       /,(?=[^,]*$)/,
       ' and'

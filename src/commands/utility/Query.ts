@@ -22,7 +22,9 @@ interface Args {
       id: 'query',
       match: 'text',
       description: 'Query for wolfram alpha',
-      default: '1 + 1',
+      prompt: {
+        start: 'Please provide a query',
+      },
     },
     {
       id: 'advanced',
@@ -42,7 +44,7 @@ export default class Query extends Command {
     if (!result.success)
       return message.error(
         'Wolfram Alpha did not find any results for your query',
-        result.didyoumeans && `Did you mean "${result.didyoumeans.val}"?`
+        result.didyoumeans?.val && `Did you mean "${result.didyoumeans.val}"?`
       );
 
     const [

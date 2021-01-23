@@ -15,14 +15,12 @@ export default class MissingPermissions extends Listener {
     missing: string[] | string
   ): void {
     this.client.logger.debug(
-      commaListsAnd`${message.author.id} lacked the permissions ${missing} when executing command '${command.id}'`
+      commaListsAnd`${message.author.id} lacked permissions when executing command '${command.id}'`
     );
     message.error(
-      typeof missing === 'string'
+      missing === 'string'
         ? missing
-        : commaListsAnd`You are missing the permissions ${missing.map(
-            (perm) => `\`${perm}\``
-          )}`
+        : 'Sorry, you have insufficient permissions'
     );
   }
 }

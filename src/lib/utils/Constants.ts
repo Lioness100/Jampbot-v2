@@ -31,6 +31,9 @@ export const channels: Record<string, string> = {
   spam: '701599142782304266',
   links: '701858631221772329',
   submittions: '699221099199594547',
+  notes: '731248690550800406',
+  dev: '701597700621074513',
+  'bot-spam': '701599142782304266',
 };
 
 export const emotes = {
@@ -77,6 +80,7 @@ export const measures = {
 
 export const categories: Record<string, string> = {
   info: '👀',
+  fun: '🥳',
   misc: '🤡',
   utility: '🤖',
   moderation: '🛠',
@@ -489,3 +493,38 @@ export const questions = [
       'https://cdn.discordapp.com/attachments/699230720392167482/716009530076561418/IMG_1590780366870.PNG',
   },
 ];
+
+export const units: Record<string, { label: string; value: number }> = {
+  years: {
+    label: '(?:years?|y)',
+    value: 1000 * 60 * 60 * 24 * 365,
+  },
+  months: {
+    label: '(?:months?|mo)',
+    value: 1000 * 60 * 60 * 24 * 30,
+  },
+  weeks: {
+    label: '(?:weeks?|w)',
+    value: 1000 * 60 * 60 * 24 * 7,
+  },
+  days: {
+    label: '(?:days?|d)',
+    value: 1000 * 60 * 60 * 24,
+  },
+  hours: {
+    label: '(?:hours?|hrs?|h)',
+    value: 1000 * 60 * 60,
+  },
+  minutes: {
+    label: '(?:minutes?|mins?|m)',
+    value: 1000 * 60,
+  },
+  seconds: {
+    label: '(?:seconds?|secs?|s)',
+    value: 1000,
+  },
+  milliseconds: {
+    label: '(?:milliseconds?|msecs?|ms)',
+    value: 1,
+  },
+};

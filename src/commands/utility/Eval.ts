@@ -19,7 +19,7 @@ interface Args {
   ],
 })
 export default class Eval extends Command {
-  public async run(message: Message, args: Args): Promise<void> {
+  public async run(message: Message, args: Args): Promise<unknown> {
     let error = false;
     let result = '';
     try {
@@ -38,7 +38,7 @@ export default class Eval extends Command {
     } finally {
       if (args.silent) {
         if (error) this.client.logger.info('Eval error: ', result);
-        return void message.delete();
+        return message.delete();
       }
 
       void message.util!.send(

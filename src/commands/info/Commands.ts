@@ -12,15 +12,17 @@ interface Args {
 @ApplyOptions<CommandOptions>('commands', {
   aliases: ['commands', 'help++'],
   description: 'View all of the commands',
+  usage: '[command]',
   args: [
     {
       id: 'command',
       type: 'commandAlias',
+      description: 'The specific command to view, if any',
     },
   ],
 })
 export default class Commands extends Command {
-  public async run(message: Message, { command }: Args): Promise<void> {
+  public async run(message: Message, { command }: Args): Promise<unknown> {
     if (!command) {
       const embeds = this.handler.categories.map((category) =>
         message
@@ -50,7 +52,7 @@ export default class Commands extends Command {
           )
       );
       await Promise.all(embeds.map((embed) => message.author.send(embed)));
-      return void message.react('👍');
+      return message.react('👍');
     } else {
       if (command.hidden) return message.error(`This command is hidden 🙈`);
       await message.author.send(

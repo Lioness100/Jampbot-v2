@@ -5,6 +5,8 @@ import {
   InhibitorHandler,
   ListenerHandler,
 } from 'discord-akairo';
+import type { Guild, Message } from 'discord.js';
+import { units } from '../utils/Constants';
 import { JampbotUtil, logger } from '../utils';
 import { TaskHandler, Database } from '.';
 
@@ -24,6 +26,40 @@ export default class JampbotClient extends AkairoClient {
     commandUtilLifetime: 6e4,
     commandUtilSweepInterval: 6e4,
     aliasReplacement: /-/g,
+    argumentDefaults: {
+      prompt: {
+        retries: 3,
+        retry: (message: Message) =>
+          message
+            .embed(`Invalid reply; please try again`)
+            .setDescription(
+              'You can respond with `cancel` to cancel the prompt'
+            )
+            .setColor('RED'),
+        timeout: (message: Message) =>
+          message.embed(`You ran out of time`).setColor('RED'),
+        ended: (message: Message) =>
+          message.embed(`Too many tries`).setColor('RED'),
+        cancel: (message: Message) => message.embed(`Prompt Canceled`),
+        modifyStart: (message: Message, text: unknown) =>
+          typeof text === 'string'
+            ? message
+                .embed(text)
+                .setDescription(
+                  'You can respond with `cancel` to cancel the prompt'
+                )
+            : text,
+        modifyRetry: (message: Message, text: unknown) =>
+          typeof text === 'string'
+            ? message
+                .embed(text)
+                .setDescription(
+                  'Try again or respond with `cancel` to cancel the prompt'
+                )
+                .setColor('RED')
+            : text,
+      },
+    },
   });
 
   public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
@@ -56,7 +92,12 @@ export default class JampbotClient extends AkairoClient {
           $browser: 'Discord Android',
         },
       },
+      partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
     });
+  }
+
+  public get guild(): Guild {
+    return this.guilds.cache.get('699220238801174558')!;
   }
 
   public async start(): Promise<void> {
@@ -71,6 +112,31 @@ export default class JampbotClient extends AkairoClient {
       .useInhibitorHandler(this.inhibitorHandler)
       .useListenerHandler(this.listenerHandler)
       .loadAll();
+
+    this.commandHandler.resolver.addType(
+      'duration',
+      (message: Message, phrase: string) => {
+        if (!phrase) return null;
+
+        const regexString = Object.entries(units)
+          .map(
+            ([name, { label }]) =>
+              String.raw`(?:(?<${name}>-?(?:\d+)?\.?\d+) *${label})?`
+          )
+          .join('\\s*');
+        const match = new RegExp(`^${regexString}$`, 'i').exec(phrase);
+        if (!match) return null;
+
+        let milliseconds = 0;
+        for (const key in match.groups) {
+          const value = Number(match.groups[key] || 0);
+          milliseconds += value * units[key].value;
+        }
+
+        return milliseconds;
+      }
+    );
+
     logger.info(`Loaded ${this.commandHandler.modules.size} commands`);
 
     this.inhibitorHandler.loadAll();

@@ -9,8 +9,6 @@ const stats: Record<string, number> = {
   members: 0,
   channels: 0,
   emojis: 0,
-  roles: 0,
-  guilds: 0,
   users: 0,
   voiceStates: 0,
 };

@@ -9,8 +9,8 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   event: 'guildMemberRemove',
 })
 export default class GuildMemberRemove extends Listener {
-  public async exec(member: GuildMember): Promise<void> {
-    void ((await this.client.channels.fetch(channels.log)) as TextChannel).send(
+  public exec(member: GuildMember): void {
+    void (member.guild.channels.cache.get(channels.log) as TextChannel).send(
       new EnhancedEmbed()
         .personalize(member)
         .setColor('RED')

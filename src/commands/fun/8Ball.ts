@@ -17,6 +17,10 @@ interface Args {
     {
       id: 'question',
       match: 'rest',
+      prompt: {
+        start: 'What is your question?',
+      },
+      description: 'The question to ask',
     },
   ],
 })

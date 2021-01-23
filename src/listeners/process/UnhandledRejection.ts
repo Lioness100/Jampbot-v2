@@ -7,11 +7,6 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 })
 export default class UnhandledRejection extends Listener {
   public exec(reason: Error, promise: Promise<unknown>): void {
-    this.client.logger.fatal(
-      'Encountered an unhandled rejection at: ',
-      promise,
-      'reason: ',
-      reason
-    );
+    this.client.logger.fatal('Encountered an unhandled rejection: ', promise);
   }
 }
