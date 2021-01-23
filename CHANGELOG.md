@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.5.0...v1.6.0) (2021-01-23)
+
+
+### Features
+
+* **command:** :sparkles: moderation ([1d71cf1](https://github.com/Lioness100/Jampbot-v2/commit/1d71cf190ee0bc57f678504833e0ae46d64eb04f))
+* **command:** :sparkles: talk ([5d760c8](https://github.com/Lioness100/Jampbot-v2/commit/5d760c889b77765f06602b4208f5460391738923))
+* :sparkles: prompts + metadata + misc ([09039af](https://github.com/Lioness100/Jampbot-v2/commit/09039af3d566af54a7a7d092657aeb17da92a956))
+* **command:** :sparkles: added faq command ([c91e1e4](https://github.com/Lioness100/Jampbot-v2/commit/c91e1e490c1c89aea86b34b23d4f3e10936594ef))
+
+
+### Bug Fixes
+
+* **command:** :construction: it do be broken tho ([8eaf9b0](https://github.com/Lioness100/Jampbot-v2/commit/8eaf9b030f01dcb38dbbc4e623fa205c0aae357d))
+* :sparkles: messageutil ([c879313](https://github.com/Lioness100/Jampbot-v2/commit/c87931355bc30c415a0b57f12d551f50540d3cbe))
+* **command:** 💄 made it prettier ([0ab36cd](https://github.com/Lioness100/Jampbot-v2/commit/0ab36cd9f36d08ab66946ccdf2097558d0daff51))
+* :pencil: wrong import ([0e4887a](https://github.com/Lioness100/Jampbot-v2/commit/0e4887ac33522554f8d50c1ab953a82b90156feb))
+
 ## [1.5.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.4.0...v1.5.0) (2021-01-17)
 
 
