@@ -7,7 +7,7 @@ import { channels } from '../../lib/utils/Constants';
 
 interface Args {
   member: GuildMember;
-  reason?: string;
+  reason: string;
   duration?: number;
 }
 
@@ -58,6 +58,12 @@ export default class Mute extends Command {
         "You can't mute someone who's highest role position is equal to or greator than yours"
       );
 
+    const mute =
+      (await this.client.db.Mutes.findOne({ id: member.id })) ||
+      new this.client.db.Mutes({ id: member.id });
+
+    if (mute.active) message.error(`${member.user.tag} is already muted`);
+
     await member.roles.add('699370128889872414');
 
     const embed = message
@@ -78,7 +84,8 @@ export default class Mute extends Command {
 
     try {
       void member.send(
-        embed
+        this.client.util
+          .embed(embed)
           .setTitle('You have been muted')
           .setDescription(
             'Please visit the #anti-softlock channel in Team Jamp with any questions or concerns'
@@ -93,7 +100,19 @@ export default class Mute extends Command {
     );
 
     void (message.guild!.channels.cache.get(channels.log) as TextChannel).send(
-      embed.setTitle(`${member.user.tag} has been mutes`)
+      embed.setTitle(`${member.user.tag} has been muted`)
     );
+
+    mute.active = {
+      exec: message.author.id,
+      reason,
+      start: Date.now(),
+      duration,
+    };
+
+    mute.previous++;
+
+    await mute.save();
+    mute.startTimer(this.client);
   }
 }

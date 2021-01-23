@@ -3,7 +3,8 @@ import { logger } from '../utils/Logger';
 import Entities from '../../entities';
 
 export default class Database {
-  public levels = Entities.Levels;
+  public Levels = Entities.Levels;
+  public Mutes = Entities.Mutes;
 
   public constructor() {
     mongoose.connection.on('error', (err) =>

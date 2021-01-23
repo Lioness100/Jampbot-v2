@@ -31,7 +31,6 @@ export default class Stats extends Command {
           {
             name: '❯ General',
             value: stripIndent`
-            •  **Version:** ${process.env.npm_package_version}
             •  **Modules:** ${[
               commandHandler,
               inhibitorHandler,

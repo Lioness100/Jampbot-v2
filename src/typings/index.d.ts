@@ -6,6 +6,7 @@ declare module 'discord-akairo' {
     listenerHandler: import('discord-akairo').ListenerHandler;
     inhibitorHandler: import('discord-akairo').InhibitorHandler;
     taskHandler: import('../lib/structures/TaskHandler').default;
+    guild: import('discord.js').Guild;
   }
 
   interface Command {

@@ -110,7 +110,8 @@ export default class Ban extends Command {
 
       try {
         await member.send(
-          embed
+          this.client.util
+            .embed(embed)
             .setTitle(`You have been banned from Team Jamp`)
             .setDescription(
               'Please send a friend request to @Lioness100#4566 and message them if you have any questions or concerns'

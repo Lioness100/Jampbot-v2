@@ -1,6 +1,7 @@
 import { DocumentType, prop, ReturnModelType } from '@typegoose/typegoose';
 import { formatDistanceToNowStrict } from 'date-fns';
 import type { TextChannel } from 'discord.js';
+import type { AkairoClient } from 'discord-akairo';
 import { channels } from '../lib/utils/Constants';
 import type JampbotClient from '../lib/structures/JampbotClient';
 import Entity from './Entity';
@@ -14,10 +15,10 @@ export default class Mutes extends Entity {
     exec: string;
     reason: string;
     start: number;
-    end?: number;
+    duration?: number;
   };
 
-  public startTimer(this: DocumentType<Mutes>, client: JampbotClient): void {
+  public startTimer(this: DocumentType<Mutes>, client: AkairoClient): void {
     client.setTimeout(
       () =>
         void (async () => {
@@ -59,8 +60,11 @@ export default class Mutes extends Entity {
           ) as TextChannel).send(
             embed.setTitle(`${member.user.tag} has been unmuted`)
           );
+
+          this.active = undefined;
+          await this.save();
         })(),
-      this.active!.end! - Date.now()
+      this.active!.duration!
     );
   }
 
@@ -73,7 +77,7 @@ export default class Mutes extends Entity {
     });
 
     mutes
-      .filter((mute) => mute.active!.end)
+      .filter((mute) => mute.active!.duration)
       .forEach((mute) => mute.startTimer(client));
   }
 }

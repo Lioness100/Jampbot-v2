@@ -105,7 +105,7 @@ export default class JampbotClient extends AkairoClient {
     void this.login(process.env.TOKEN);
   }
 
-  private async init() {
+  private async init(): Promise<void> {
     this.logger.info('Starting up...');
 
     this.commandHandler
