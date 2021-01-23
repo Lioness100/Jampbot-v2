@@ -15,7 +15,7 @@
   "scripts": {
     "lint": "eslint src --ext ts --fix",
     "start": "node .",
-    "test": "echo \"No tests yet\"",
+    "test": "npm run lint",
     "dev": "ts-node --project src/tsconfig.json  --files src/index.ts",
     "prebuild": "rm -rf dist",
     "build": "tsc -b src",
