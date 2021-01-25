@@ -1,23 +1,23 @@
 import type { CommandOptions } from 'discord-akairo';
 import type { Message } from 'discord.js';
 import { getColor } from 'colorthief';
-import { quags } from '../../lib/utils/Constants';
 import ApplyOptions from '../../lib/utils/ApplyOptions';
 import Command from '../../lib/structures/Command';
+import { carps } from '../../lib/utils/Constants';
 
-@ApplyOptions<CommandOptions>('quag', {
-  aliases: ['quag', 'quagsire'],
+@ApplyOptions<CommandOptions>('carp', {
+  aliases: ['carp', 'carps', 'mrcarps'],
+  description: 'View a random carp image',
   blockedChannels: 'default',
-  description: 'View a random image of (the pokemon) quagsire',
 })
-export default class Quag extends Command {
+export default class Carp extends Command {
   public async run(message: Message): Promise<void> {
-    const quag = this.client.util.sample(quags);
+    const carp = this.client.util.sample(carps);
     void message.util!.send(
       message
         .embed()
-        .setColor(await getColor(quag))
-        .setImage(quag)
+        .setColor(await getColor(carp))
+        .setImage(carp)
     );
   }
 }
