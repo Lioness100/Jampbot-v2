@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.6.0...v1.7.0) (2021-01-25)
+
+
+### Features
+
+* :sparkles: moderation ([8c44611](https://github.com/Lioness100/Jampbot-v2/commit/8c44611dfbe13868741842af42d74d86d8c6ace7))
+* **command:** :sparkles: colors ([3d327c0](https://github.com/Lioness100/Jampbot-v2/commit/3d327c0e791ffd45d15a5f8618f875a6dcaea90a))
+
+
+### Bug Fixes
+
+* :bug: ([d2936e7](https://github.com/Lioness100/Jampbot-v2/commit/d2936e7c2dae23452a37812b497eb4715711a33d))
+* :bug: hopefully fix imgs ([5fd2c34](https://github.com/Lioness100/Jampbot-v2/commit/5fd2c345e380085514cd6c1f015bdb55c9da508f))
+* 📃 incorrect path ([a13af21](https://github.com/Lioness100/Jampbot-v2/commit/a13af21027becff2d68d25f7604b8690d2217185))
+
 ## [1.6.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.5.0...v1.6.0) (2021-01-23)
 
 
