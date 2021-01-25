@@ -21,7 +21,7 @@ export default class GuildMemberAdd extends Listener {
     const ctx = canvas.getContext('2d');
 
     const background = await loadImage(
-      fs.readFileSync(asset('images/welcome.jpg'))
+      fs.readFileSync(asset('images/welcome.png'))
     );
     ctx.drawImage(background, 0, 0, 700, 250);
 
@@ -40,7 +40,7 @@ export default class GuildMemberAdd extends Listener {
     ctx.clip();
 
     const avatar = await loadImage(
-      member.user.displayAvatarURL({ format: 'jpg', size: 4096 })
+      member.user.displayAvatarURL({ format: 'png', size: 4096 })
     );
     ctx.drawImage(avatar, 25, 25, 200, 200);
 
