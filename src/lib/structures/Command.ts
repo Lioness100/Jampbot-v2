@@ -39,7 +39,10 @@ export default abstract class JampbotCommand extends Command {
   public exec(message: Message, args: Args): void {
     if (args.help)
       this.handler.modules.get('commands')?.exec(message, { command: this });
-    else this.run(message, args);
+    else
+      Promise.resolve(this.run(message, args)).catch((err) => {
+        throw err;
+      });
   }
 
   public abstract run(message: Message, args: unknown): unknown;

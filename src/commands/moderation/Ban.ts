@@ -74,8 +74,14 @@ export default class Ban extends Command {
         .embed(`Are you sure you want to ban ${member.user.tag}?`)
         .addFields([
           this.client.util.getMemberInfo(member)[0],
-          { name: 'Mutes', value: '0' },
-          { name: 'Kicks', value: '0' },
+          {
+            name: 'Mutes',
+            value: `${
+              (await this.client.db.Mutes.findOne({ id: member.id }))
+                ?.previous ?? 0
+            }`,
+          },
+          { name: 'Warns', value: '0' },
         ])
     );
 
@@ -122,9 +128,9 @@ export default class Ban extends Command {
       }
 
       await member.ban({ reason, days });
-      void message.util!.send(
-        message.embed(`${member.user.tag} has been banned`)
-      );
+
+      message.embed(`${member.user.tag} has been banned`, true);
+
       void (message.guild!.channels.cache.get(
         channels.log
       ) as TextChannel).send(embed);

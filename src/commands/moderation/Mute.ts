@@ -62,7 +62,8 @@ export default class Mute extends Command {
       (await this.client.db.Mutes.findOne({ id: member.id })) ||
       new this.client.db.Mutes({ id: member.id });
 
-    if (mute.active) message.error(`${member.user.tag} is already muted`);
+    if (mute.active)
+      return message.error(`${member.user.tag} is already muted`);
 
     await member.roles.add('699370128889872414');
 
@@ -95,9 +96,7 @@ export default class Mute extends Command {
       // do nothing
     }
 
-    void message.channel.send(
-      message.embed(`${member.user.tag} has been muted`)
-    );
+    message.embed(`${member.user.tag} has been muted`, true);
 
     void (message.guild!.channels.cache.get(channels.log) as TextChannel).send(
       embed.setTitle(`${member.user.tag} has been muted`)

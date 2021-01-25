@@ -19,53 +19,58 @@ export default class Mutes extends Entity {
   };
 
   public startTimer(this: DocumentType<Mutes>, client: AkairoClient): void {
-    client.setTimeout(
-      () =>
-        void (async () => {
-          const member = await client.guild.members.fetch(this.id);
-          if (!member || member.roles.cache.has('699370128889872414')) return;
-          await member.roles.remove('699370128889872414');
+    client.setTimeout(() => void this.unmute(client), this.active!.duration!);
+  }
 
-          const exec = await client.users.fetch(this.active!.exec);
+  public async unmute(
+    this: DocumentType<Mutes>,
+    client: AkairoClient,
+    reason = 'No reason Provided'
+  ): Promise<void> {
+    const member = await client.guild.members.fetch(this.id);
+    if (!member || member.roles.cache.has('699370128889872414')) return;
+    await member.roles.remove('699370128889872414');
 
-          const embed = client.util
-            .embed()
-            .personalize(member)
-            .addFields(
-              {
-                name: 'Original Reason',
-                value: this.active!.reason,
-              },
-              {
-                name: 'Original Duration',
-                value: formatDistanceToNowStrict(this.active!.start),
-              }
-            )
-            .setFooter(
-              `Originally muted by ${exec.tag}`,
-              exec.displayAvatarURL()
-            )
-            .setTimestamp();
+    const exec = await client.users.fetch(this.active!.exec);
 
-          void member.send(
-            embed
-              .setTitle(`You have been unmuted`)
-              .setDescription(
-                'Please discontinue the behavior that led to your mute'
-              )
-          );
+    const embed = client.util
+      .embed()
+      .personalize(member)
+      .addFields(
+        {
+          name: 'Mute Reason',
+          value: this.active!.reason,
+        },
+        {
+          name: 'Unmute Reason',
+          value: reason,
+        },
+        {
+          name: 'Duration',
+          value: formatDistanceToNowStrict(this.active!.start),
+        }
+      )
+      .setFooter(`Originally muted by ${exec.tag}`, exec.displayAvatarURL())
+      .setTimestamp();
 
-          void (client.guild.channels.cache.get(
-            channels.log
-          ) as TextChannel).send(
-            embed.setTitle(`${member.user.tag} has been unmuted`)
-          );
+    try {
+      void member.send(
+        embed
+          .setTitle(`You have been unmuted`)
+          .setDescription(
+            'Please discontinue the behavior that led to your mute'
+          )
+      );
+    } catch (err) {
+      // do nothing
+    }
 
-          this.active = undefined;
-          await this.save();
-        })(),
-      this.active!.duration!
+    void (client.guild.channels.cache.get(channels.log) as TextChannel).send(
+      embed.setTitle(`${member.user.tag} has been unmuted`)
     );
+
+    this.active = undefined;
+    await this.save();
   }
 
   public static async startTimers(
