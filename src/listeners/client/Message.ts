@@ -58,18 +58,20 @@ export default class MessageListener extends Listener {
         emote: /<a?:\w+Jamper|Jumper:\d{17,19}>/.exec(message.content),
         points: +/(\d\d?(?:\.\d)?) points?/.exec(message.content)![1],
         level: /'(.+)'/.exec(message.content)![1],
-        creator: this.client.util.resolveMember(
-          / by (.+?)(?=\s<a?:)+/.exec(message.content)![1],
-          message.guild!.members.cache,
-          true,
-          true
-        ),
-        exec: this.client.util.resolveMember(
-          /.+?(?=<a?:)/.exec(message.content)![0],
-          message.guild!.members.cache,
-          true,
-          true
-        ),
+        creator:
+          this.client.util.resolveMember(
+            / by (.+?)(?=\s<a?:)+/.exec(message.content)![1],
+            message.guild!.members.cache,
+            true,
+            true
+          )?.user.tag ?? / by (.+?)(?=\s<a?:)+/.exec(message.content)![1],
+        exec:
+          this.client.util.resolveMember(
+            /.+?(?=<a?:)/.exec(message.content)![0],
+            message.guild!.members.cache,
+            true,
+            true
+          )?.user.tag ?? /.+?(?=<a?:)/.exec(message.content)![0],
       };
     } catch (err) {
       this.client.logger.error('Error whilst tracking clears: ', err);

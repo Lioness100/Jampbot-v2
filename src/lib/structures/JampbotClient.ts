@@ -155,6 +155,7 @@ export default class JampbotClient extends AkairoClient {
     logger.info(`Loaded ${this.taskHandler.modules.size} tasks`);
 
     await this.db.init();
+    await this.db.Mutes.startTimers(this);
     logger.info('Established connection to database');
   }
 }
