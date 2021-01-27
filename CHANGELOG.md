@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.7.0...v1.8.0) (2021-01-27)
+
+
+### Features
+
+* **command:** :sparkles: metadata + purge ([cc81bfe](https://github.com/Lioness100/Jampbot-v2/commit/cc81bfe7cb0acf89460836cf20f1abb0027749ca))
+* **command:** :sparkles: ping leaderboard lol ([023228a](https://github.com/Lioness100/Jampbot-v2/commit/023228a6b2b4aa07a8d0211b8fe70f752930416b))
+
+
+### Bug Fixes
+
+* :bug: ([8ae6dc4](https://github.com/Lioness100/Jampbot-v2/commit/8ae6dc4df984429a1ee814039db9c1fd0e479a9d))
+* :bug: forgot to do this ([da17628](https://github.com/Lioness100/Jampbot-v2/commit/da17628622ebd7c2629dfdaf3062b2a877838aa2))
+
 ## [1.7.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.6.0...v1.7.0) (2021-01-25)
 
 
