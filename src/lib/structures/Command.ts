@@ -1,9 +1,4 @@
-import {
-  Command,
-  CommandOptions,
-  ArgumentOptions,
-  ArgumentGenerator,
-} from 'discord-akairo';
+import { Command, CommandOptions, ArgumentOptions } from 'discord-akairo';
 import { Message } from 'discord.js';
 
 interface Args {
@@ -14,10 +9,10 @@ export default abstract class JampbotCommand extends Command {
   public examples?: string[];
   public hidden?: boolean;
   public usage?: string;
-  public args: ArgumentOptions[] | ArgumentGenerator;
+  public argDescriptions: ArgumentOptions[];
 
   public constructor(id: string, options: CommandOptions = {}) {
-    const { examples, hidden, usage, args = [] } = options;
+    const { examples, hidden, usage, args = [], argDescriptions } = options;
 
     if (Array.isArray(args)) {
       args.unshift({
@@ -30,7 +25,8 @@ export default abstract class JampbotCommand extends Command {
 
     super(id, { ...options, args });
 
-    this.args = Array.isArray(args) ? args.slice(1) : args;
+    this.argDescriptions =
+      argDescriptions || (args as ArgumentOptions[]).slice(1);
     this.examples = examples;
     this.hidden = this.ownerOnly || hidden;
     this.usage = usage;
@@ -40,8 +36,10 @@ export default abstract class JampbotCommand extends Command {
     if (args.help)
       this.handler.modules.get('commands')?.exec(message, { command: this });
     else
-      Promise.resolve(this.run(message, args)).catch((err) => {
-        throw err;
+      Promise.resolve(this.run(message, args)).catch((err: Error) => {
+        this.client.listenerHandler.modules
+          .get('error')!
+          .exec(err, message, this);
       });
   }
 

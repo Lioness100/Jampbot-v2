@@ -68,9 +68,9 @@ export default class Commands extends Command {
                 name: 'Aliases',
                 value: commaListsAnd`${this.inline(command.aliases)}`,
               },
-              Array.isArray(command.args) && {
-                name: `Arguments: ${command.args.length}`,
-                value: command.args
+              Array.isArray(command.argDescriptions) && {
+                name: `Arguments: ${command.argDescriptions.length}`,
+                value: command.argDescriptions
                   .map(
                     (arg) =>
                       `> Descriptor: \`${arg.id}\`\n${

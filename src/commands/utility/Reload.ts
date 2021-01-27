@@ -8,7 +8,7 @@ interface Args {
 }
 
 @ApplyOptions<CommandOptions>('reload', {
-  aliases: ['reload', 'refresh'],
+  aliases: ['reload', 'refresh', 'r'],
   description: 'Reload a module',
   ownerOnly: true,
   args: [

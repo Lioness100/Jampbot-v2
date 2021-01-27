@@ -39,7 +39,7 @@ export default class JampbotClient extends AkairoClient {
         timeout: (message: Message) =>
           message.embed(`You ran out of time`).setColor('RED'),
         ended: (message: Message) =>
-          message.embed(`Too many tries`).setColor('RED'),
+          message.embed(`Too many attempts`).setColor('RED'),
         cancel: (message: Message) => message.embed(`Prompt Canceled`),
         modifyStart: (message: Message, text: unknown) =>
           typeof text === 'string'

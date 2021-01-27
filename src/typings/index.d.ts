@@ -15,14 +15,13 @@ declare module 'discord-akairo' {
     examples?: string[];
     hidden?: boolean;
     usage?: string;
-    args:
-      | import('discord-akairo').ArgumentOptions[]
-      | import('discord-akairo').ArgumentGenerator;
+    argDescriptions: import('discord-akairo').ArgumentOptions[];
   }
 
   interface CommandOptions {
     blockedChannels?: string[] | 'default';
     allowedChannels?: string[] | 'default';
+    argDescriptions?: import('discord-akairo').ArgumentOptions[];
     examples?: string[];
     hidden?: boolean;
     usage?: string;
