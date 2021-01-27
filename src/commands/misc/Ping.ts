@@ -22,25 +22,41 @@ interface Args {
 export default class Ping extends Command {
   private leaderboard = new Collection<string, number>();
 
-  public run(message: Message, { leaderboard }: Args): void {
+  public async run(message: Message, { leaderboard }: Args): Promise<void> {
     if (leaderboard)
       message.embed(`Ping Leaderboard`, (embed) =>
         embed
           .addFields(
             this.leaderboard
               .sort()
-              .map((value, name) => ({ name, value: `${value}ms` }))
+              .map((value, name) => ({ name, value: this.ms(value) }))
               .slice(0, 5)
           )
           .setFooter('Leaderboards are reset every restart')
       );
     else {
-      const ping = this.client.ws.ping;
-      message.embed(`:ping_pong:  Pong! My ping is ${ping}ms!`, true);
+      const sent = await message.util!.send(
+        message.embed(`:ping_pong:  Pinging...`).setColor('BLUE')
+      );
+
+      const diff =
+        (sent.editedTimestamp || sent.createdTimestamp) -
+        (message.editedTimestamp || message.createdTimestamp);
+
+      message.embed(`:ping_pong:  Pong!`, (embed) =>
+        embed.addFields([
+          { name: 'Bot Ping', value: this.ms(diff) },
+          { name: 'Websocket Ping', value: this.ms(this.client.ws.ping) },
+        ])
+      );
 
       const previous = this.leaderboard.get(message.author.tag);
-      if (!previous || previous > ping)
-        this.leaderboard.set(message.author.tag, ping);
+      if (!previous || previous > diff)
+        this.leaderboard.set(message.author.tag, diff);
     }
+  }
+
+  private ms(ms: number) {
+    return `${ms}ms`;
   }
 }
