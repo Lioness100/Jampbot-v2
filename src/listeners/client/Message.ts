@@ -67,7 +67,7 @@ export default class MessageListener extends Listener {
           )?.user.tag ?? / by (.+?)(?=\s<a?:)+/.exec(message.content)![1],
         exec:
           this.client.util.resolveMember(
-            /.+?(?=<a?:)/.exec(message.content)![0],
+            /.+?\n/.exec(message.content)![0],
             message.guild!.members.cache,
             true,
             true

@@ -52,9 +52,7 @@ export class Logger {
           ? `${logLevels[level]}[${level.toUpperCase()}]\x1b[0m`
           : `[${level.toUpperCase()}]`,
         content
-          .map((val) =>
-            typeof val === 'string' ? val : inspect(val, { depth: Infinity })
-          )
+          .map((val) => (typeof val === 'string' ? val : inspect(val)))
           .join(''),
       ].join(' ') + (console ? '' : '\n')
     );
