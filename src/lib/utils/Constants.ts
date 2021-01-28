@@ -23,50 +23,44 @@ export const logLevels = {
   debug: '\x1b[32m',
 };
 
-export const channels: Record<string, string> = {
+export const channels = {
   welcome: '710497845278670989',
   log: '699230720392167482',
-  'level-rules': '699220818374295633',
+  levelRules: '699220818374295633',
   rules: '699220667484078131',
-  spam: '701599142782304266',
+  spam: '699612856018272289',
   links: '701858631221772329',
-  submittions: '699221099199594547',
+  submissions: '699221099199594547',
   notes: '731248690550800406',
   dev: '701597700621074513',
-  'bot-spam': '701599142782304266',
+  commands: '701599142782304266',
+  discussion: '699704365799440526',
+  general: '699220239698886679',
+  promo: '699633909595635783',
 };
 
 export const emotes = {
   pog: '<:PridePog:796585159607975947>',
   sad: '<:SadBowser:717925128331329607>',
   hype: '<:KomodoHype:796594674029821962>',
+  hooray: '<:JuzHype:717925533265952832>',
   arrow: {
-    down: 'ArrowD:718118799378874411>',
+    down: '<:ArrowD:718118799378874411>',
   },
 };
 
+// TODO: add muted role
 export const roles = {
   member: '699232048644227115',
 };
 
-export const generalChannels = [
-  '699220239698886679',
-  '699221859580903435',
-  '699222200787402762',
-  '699704365799440526',
-  '699672275854819408',
-  '699633909595635783',
-  '699221277008855071',
-];
-
 export const spamChannels = [
-  '699220239698886679',
-  '699222200787402762',
-  '699221277008855071',
-  '699612856018272289',
-  '699704365799440526',
-  '722174152357707776',
-  '699230720392167482',
+  channels.spam,
+  channels.log,
+  channels.commands,
+  channels.dev,
+  channels.submissions,
+  channels.promo,
 ];
 
 export const measures = {
@@ -102,9 +96,9 @@ export interface Response {
 
 export const blacklist: string[] = [];
 
-const styles = ['SMB1', 'SMB3', 'SMW', 'NSMBU', '3DW'];
+const styles = ['SMB1', 'SMB3', 'SMW', 'NSMBU', '3DW'] as const;
 
-const isNot = (...gameStyles: string[]) =>
+const isNot = <T extends number>(...gameStyles: typeof styles[T][]) =>
   styles.filter((style) => !gameStyles.includes(style));
 
 const themes = [
@@ -245,7 +239,10 @@ const enemies = {
   Ludwig: isNot('3DW'),
 };
 
-export const levelData: Record<string, Record<string, string[]> | string[]> = {
+export const levelData: Record<
+  string,
+  Record<string, readonly string[]> | readonly string[]
+> = {
   styles,
   themes,
   gizmos,
@@ -543,21 +540,21 @@ export const questions = [
   {
     key: 'register',
     desc: 'How to register in Team Jamp',
-    answer: `Before you're able to submit clears and levels, you must type \`!register nickname\` in <#${channels.spam}>. Your nickname will then appear on our website under the members tab, and you're all set for the next step ${emotes.pog}`,
+    answer: `Before you're able to submit clears and levels, you must type \`!register nickname\` in <#${channels.commands}>. Your nickname will then appear on our website under the members tab, and you're all set for the next step ${emotes.pog}`,
     pic:
       'https://cdn.discordapp.com/attachments/699939038601150510/713438819269083167/InShot_20200522_130748930.jpg',
   },
   {
     key: 'website',
     desc: "How to login and use Team Jamp's website",
-    answer: `Links to useful pages on our website can be found in <#${channels.links}>. There you can find Team Jamp levels, worlds, leaderboard, and more. If you would like to be able to submit clears on the website, and filter through levels you've already cleared, you'll need to log in to your account.\n\nFirst, make sure you're registered, then use the \`!login\` command in <#${channels.spam}>. Make sure you have your DMs open so the bot can send you a link to your account ${emotes.pog}`,
+    answer: `Links to useful pages on our website can be found in <#${channels.links}>. There you can find Team Jamp levels, worlds, leaderboard, and more. If you would like to be able to submit clears on the website, and filter through levels you've already cleared, you'll need to log in to your account.\n\nFirst, make sure you're registered, then use the \`!login\` command in <#${channels.commands}>. Make sure you have your DMs open so the bot can send you a link to your account ${emotes.pog}`,
     pic:
       'https://cdn.discordapp.com/attachments/699230720392167482/714805202602950747/InShot_20200526_074033748.jpg',
   },
   {
     key: 'clears',
     desc: 'How to submit clears',
-    answer: `To submit your clears, you can either use the Team Jamp website directly or use the \`!clear xxx-xxx-xxx\` command in <#${channels.spam}>. You will also get points for your clears, which will be added to your profile on the leaderboard, and can help you reach higher ranks in the discord.\n\nIn Team Jamp we use point scaling, meaning you might get a higher amount of points depending on how hard the level is. It's roughly graphed like so: \`1=1, 3.5=5, 10=20\`.\n\nAdditionally, check the pinned message in <#${channels.spam}> for extra clear-related commands ${emotes.pog}`,
+    answer: `To submit your clears, you can either use the Team Jamp website directly or use the \`!clear xxx-xxx-xxx\` command in <#${channels.commands}>. You will also get points for your clears, which will be added to your profile on the leaderboard, and can help you reach higher ranks in the discord.\n\nIn Team Jamp we use point scaling, meaning you might get a higher amount of points depending on how hard the level is. It's roughly graphed like so: \`1=1, 3.5=5, 10=20\`.\n\nAdditionally, check the pinned message in <#${channels.commands}> for extra clear-related commands ${emotes.pog}`,
     pic:
       'https://cdn.discordapp.com/attachments/699230720392167482/715284483208642580/Screenshot_20200527-152247.png',
   },
@@ -565,7 +562,7 @@ export const questions = [
   {
     key: 'levels',
     desc: 'How to submit levels',
-    answer: `First, you should read <#${channels['level-rules']}> so you know what is required in a Team Jamp level. Then use the \`!add xxx-xxx-xxx <level style> <level name>\` command in <#${channels.submittions}>. Your level will then be displayed on the website as 'pending'.\n\nOnce the judges review the level and hopefully approve it, you will be notified and your level will be officially welcomed into Team Jamp. Additionally, check the pinned message in <#${channels.submittions}> for extra level-submission-related commands ${emotes.pog}`,
+    answer: `First, you should read <#${channels.levelRules}> so you know what is required in a Team Jamp level. Then use the \`!add xxx-xxx-xxx <level style> <level name>\` command in <#${channels.submissions}>. Your level will then be displayed on the website as 'pending'.\n\nOnce the judges review the level and hopefully approve it, you will be notified and your level will be officially welcomed into Team Jamp. Additionally, check the pinned message in <#${channels.submissions}> for extra level-submission-related commands ${emotes.pog}`,
     pic:
       'https://cdn.discordapp.com/attachments/699230720392167482/715289245178265740/Screenshot_20200527-154113.png',
   },

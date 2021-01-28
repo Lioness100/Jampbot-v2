@@ -8,7 +8,7 @@ interface Args {
 }
 
 @ApplyOptions<CommandOptions>('userinfo', {
-  aliases: ['userinfo', 'uinfo', 'memberinfo', 'minfo'],
+  aliases: ['userinfo', 'uinfo', 'ui', 'memberinfo', 'minfo', 'mi'],
   description: "View a member's info",
   usage: '<member>',
   examples: ['@Lioness100#4566'],
