@@ -11,7 +11,7 @@ declare module 'discord-akairo' {
 
   interface Command {
     blockedChannels?: string[] | 'default';
-    allowedChannels?: string[] | 'default';
+    allowedChannels?: string[];
     examples?: string[];
     hidden?: boolean;
     usage?: string;
@@ -20,7 +20,7 @@ declare module 'discord-akairo' {
 
   interface CommandOptions {
     blockedChannels?: string[] | 'default';
-    allowedChannels?: string[] | 'default';
+    allowedChannels?: string[];
     argDescriptions?: import('discord-akairo').ArgumentOptions[];
     examples?: string[];
     hidden?: boolean;
