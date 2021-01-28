@@ -1,6 +1,6 @@
 import { Listener, ListenerOptions } from 'discord-akairo';
-import type { Message, TextChannel } from 'discord.js';
-import { channels, generalChannels } from '../../lib/utils/Constants';
+import type { Message } from 'discord.js';
+import { spamChannels, emotes } from '../../lib/utils/Constants';
 import ApplyOptions from '../../lib/utils/ApplyOptions';
 
 @ApplyOptions<ListenerOptions>('message', {
@@ -8,94 +8,36 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   event: 'message',
 })
 export default class MessageListener extends Listener {
-  cooldowns = new Set();
+  private cooldowns = new Set();
 
-  public exec(message: Message): unknown {
-    if (!message.guild) return;
-
-    if (message.author.bot && message.type === 'PINS_ADD')
-      return message.delete();
-
+  public async exec(message: Message): Promise<unknown> {
     if (
-      message.author.id === '666085542085001246' &&
-      message.content.includes('‣You have cleared') &&
-      message.content.includes('‣You have earned')
-    ) {
-      const { exec, emote, level, creator, points } = this.parseClear(message);
+      spamChannels.includes(message.channel.id) ||
+      message.author.bot ||
+      this.cooldowns.has(message.author.id) ||
+      message.content.replace(/<a?:[a-zA-Z0-9_]+:(\d{17,19})>/, ' ').length < 10
+    )
+      return;
 
-      if (points <= 5.9) return;
-      return (message.guild!.channels.cache.get(
-        channels.log
-      ) as TextChannel).send(
-        `**${exec}**${
-          emote ? ` ${emote}` : ''
-        } submitted a clear for '${level}' by ${creator} and earned ${points} points`
+    this.cooldowns.add(message.author.id);
+    setTimeout(() => this.cooldowns.delete(message.author.id), 1.2e5);
+
+    const levels =
+      (await this.client.db.Levels.findOne({ id: message.author.id })) ||
+      new this.client.db.Levels({ id: message.author.id });
+
+    const leveledUp = await levels.append(~~(Math.random() * 30) + 1);
+
+    if (leveledUp)
+      message.embed(
+        `You leveled up to level ${levels.level + 1} ${emotes.hooray}`,
+        (embed) =>
+          embed.setFooter(
+            `Congratulations! You need ${this.client.db.Levels.xpFor(
+              levels.level + 2
+            )} EXP to level up again`
+          ),
+        false
       );
-    }
-
-    if (
-      Math.random() <= 0.05 &&
-      !message.author.bot &&
-      generalChannels.includes(message.channel.id)
-    ) {
-      const modified = this.parseDad(message.content);
-      if (modified)
-        void message.channel.send(
-          modified === 'Jampbot++'
-            ? "You're not Jampbot++, I'm Jampbot++!"
-            : `Hi ${
-                modified.length > 2045 ? `${modified.slice(2042)}...` : modified
-              }, I'm Jampbot++!`
-        );
-    }
-
-    // if (message.content.replace(/<a?:[a-zA-Z0-9_]+:(\d{17,19})>/, '') > )
-  }
-
-  private parseClear(message: Message) {
-    try {
-      return {
-        emote: /<a?:\w+Jamper|Jumper:\d{17,19}>/.exec(message.content),
-        points: +/(\d\d?(?:\.\d)?) points?/.exec(message.content)![1],
-        level: /'(.+)'/.exec(message.content)![1],
-        creator:
-          this.client.util.resolveMember(
-            / by (.+?)(?=\s<a?:)+/.exec(message.content)![1],
-            message.guild!.members.cache,
-            true,
-            true
-          )?.user.tag ?? / by (.+?)(?=\s<a?:)+/.exec(message.content)![1],
-        exec:
-          this.client.util.resolveMember(
-            /.+?\n/.exec(message.content)![0],
-            message.guild!.members.cache,
-            true,
-            true
-          )?.user.tag ?? /.+?(?=<a?:)/.exec(message.content)![0],
-      };
-    } catch (err) {
-      this.client.logger.error('Error whilst tracking clears: ', err);
-      return { points: 0 };
-    }
-  }
-
-  private parseDad(content: string) {
-    return content
-      .toLowerCase()
-      .replace(/i am/g, 'im')
-      .replace(/[^a-z\.\?\! ]/g, '')
-      .split(/\.|\?|\!/)
-      .map((i) => {
-        i = ` ${i}`;
-        const start = i.indexOf(' im ');
-        if (start === -1) return;
-        return i.slice(start);
-      })
-      .filter(Boolean)
-      .join(' and ')
-      ?.split(' im ')
-      .map((i) => i.trim())
-      .filter(Boolean)
-      .join(' ');
   }
 }
