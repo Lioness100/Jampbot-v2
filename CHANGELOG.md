@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.8.0...v1.9.0) (2021-01-28)
+
+
+### Features
+
+* :art: metadata ([234ec43](https://github.com/Lioness100/Jampbot-v2/commit/234ec43fdb3c6b3cb7a8803a964afd7b2b8203c3))
+
+
+### Bug Fixes
+
+* **command:** :chart_with_upwards_trend: loading message ([4776624](https://github.com/Lioness100/Jampbot-v2/commit/47766246d36aa9813cb5d2c7b4432c65fa8bd116))
+* **command:** :zap: "real" ping ([8dc165e](https://github.com/Lioness100/Jampbot-v2/commit/8dc165efb7844cc57873f1b176984ebc87290e64))
+* **listener:** :bug: hopefully fixed ([4f2fecf](https://github.com/Lioness100/Jampbot-v2/commit/4f2fecf5814e4d3853c68301eaf01055bd4343ce))
+
 ## [1.8.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.7.0...v1.8.0) (2021-01-27)
 
 
