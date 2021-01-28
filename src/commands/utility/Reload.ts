@@ -19,7 +19,7 @@ interface Args {
     },
   ],
 })
-export default class Reload extends Command {
+export default class ReloadCommand extends Command {
   public run(message: Message, { module }: Args): void {
     if (!module) return message.error("You didn't provide a valid module!");
 

@@ -5,7 +5,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   emitter: 'client',
   event: 'error',
 })
-export default class Error extends Listener {
+export default class ErrorListener extends Listener {
   public exec(info: string): void {
     this.client.logger.error(info);
   }

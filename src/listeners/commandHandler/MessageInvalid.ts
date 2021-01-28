@@ -7,7 +7,7 @@ import { channels } from '../../lib/utils/Constants';
   emitter: 'commandHandler',
   event: 'messageInvalid',
 })
-export default class MessageInvalid extends Listener {
+export default class MessageInvalidListener extends Listener {
   public exec(message: Message): unknown {
     if (!message.guild) return;
 

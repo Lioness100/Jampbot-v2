@@ -7,7 +7,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   emitter: 'commandHandler',
   event: 'missingPermissions',
 })
-export default class MissingPermissions extends Listener {
+export default class MissingPermissionsListener extends Listener {
   public exec(
     message: Message,
     command: Command,

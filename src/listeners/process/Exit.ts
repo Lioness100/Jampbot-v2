@@ -5,7 +5,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   emitter: 'process',
   event: 'exit',
 })
-export default class Exit extends Listener {
+export default class ExitListener extends Listener {
   public exec(): void {
     console.log('Exiting...');
     this.client.destroy();

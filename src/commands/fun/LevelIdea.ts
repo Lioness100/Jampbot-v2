@@ -29,7 +29,7 @@ interface Chosen {
     },
   ],
 })
-export default class LevelIdea extends Command {
+export default class LevelIdeaCommand extends Command {
   public async run(message: Message, { style }: Args): Promise<void> {
     if (style && !(levelData.styles as string[]).includes(style))
       return message.error(`"${style}" is not a style!`);

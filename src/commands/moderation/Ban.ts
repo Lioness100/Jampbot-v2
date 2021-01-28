@@ -54,7 +54,7 @@ interface Args {
     },
   ],
 })
-export default class Ban extends Command {
+export default class BanCommand extends Command {
   public async run(
     message: Message,
     { member, reason, days }: Args

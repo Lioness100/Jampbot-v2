@@ -18,7 +18,7 @@ interface Args {
     { id: 'silent', match: 'flag', flag: ['--s', '--silent'] },
   ],
 })
-export default class Exec extends Command {
+export default class ExecCommand extends Command {
   public run(message: Message, { command, silent }: Args): void {
     exec(command, { timeout: 30000 }, (error, stdout, stderr) => {
       if (silent) {

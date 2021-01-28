@@ -34,7 +34,7 @@ interface Args {
     },
   ],
 })
-export default class Query extends Command {
+export default class QueryCommand extends Command {
   private wolfram = new WolframApp(process.env.WOLFRAM_APP_ID!);
 
   public async run(message: Message, { query, advanced }: Args): Promise<void> {

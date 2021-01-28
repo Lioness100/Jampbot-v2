@@ -32,7 +32,7 @@ interface Args {
     },
   ],
 })
-export default class FAQ extends Command {
+export default class FAQCommand extends Command {
   public run(message: Message, { question, menu }: Args): unknown {
     if (menu)
       return message.embed('FAQ Menu', (embed) =>

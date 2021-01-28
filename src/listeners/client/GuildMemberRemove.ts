@@ -8,7 +8,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   emitter: 'client',
   event: 'guildMemberRemove',
 })
-export default class GuildMemberRemove extends Listener {
+export default class GuildMemberRemoveListener extends Listener {
   public exec(member: GuildMember): void {
     void (member.guild.channels.cache.get(channels.log) as TextChannel).send(
       new EnhancedEmbed()

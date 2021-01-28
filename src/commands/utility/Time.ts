@@ -24,7 +24,7 @@ interface Args {
     },
   ],
 })
-export default class Time extends Command {
+export default class TimeCommand extends Command {
   public async run(message: Message, { location }: Args): Promise<void> {
     const result = await this.client.util.fetch(
       encodeURI(`https://time.is/${location}`)

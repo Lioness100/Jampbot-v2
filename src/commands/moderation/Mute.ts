@@ -44,7 +44,7 @@ interface Args {
     },
   ],
 })
-export default class Mute extends Command {
+export default class MuteCommand extends Command {
   public async run(
     message: Message,
     { member, reason, duration }: Args

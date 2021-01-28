@@ -6,7 +6,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   emitter: 'commandHandler',
   event: 'commandStarted',
 })
-export default class CommandStarted extends Listener {
+export default class CommandStartedListener extends Listener {
   public exec(message: Message, command: Command): void {
     this.client.logger.debug(
       `${message.author.tag} triggered command '${command.id}'`

@@ -21,7 +21,7 @@ interface Args {
     },
   ],
 })
-export default class Commands extends Command {
+export default class CommandsCommand extends Command {
   public async run(message: Message, { command }: Args): Promise<unknown> {
     if (!command) {
       const embeds = this.handler.categories.map((category) =>

@@ -11,7 +11,7 @@ import Command from '../../lib/structures/Command';
   description: "Shows you Jampbot++'s stats",
   blockedChannels: 'default',
 })
-export default class Stats extends Command {
+export default class StatsCommand extends Command {
   public run(message: Message): void {
     const {
       commandHandler,

@@ -14,7 +14,7 @@ const stats: Record<string, number> = {
 };
 
 @ApplyOptions<TaskOptions>('sweeper', { rule: measures.daily })
-export default class Sweeper extends Task {
+export default class SweeperTask extends Task {
   public exec(): void {
     this.client.guilds.cache.each((guild) => {
       this.clear(guild, 'presences');

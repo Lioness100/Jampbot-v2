@@ -14,7 +14,7 @@ import Command from '../../lib/structures/Command';
       ? null
       : 'Only members of the dikdik cult can use this command',
 })
-export default class DikDik extends Command {
+export default class DikDikCommand extends Command {
   public async run(message: Message): Promise<void> {
     const dikdik = this.client.util.sample(dikdiks);
     void message.util!.send(

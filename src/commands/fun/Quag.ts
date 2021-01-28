@@ -10,7 +10,7 @@ import Command from '../../lib/structures/Command';
   blockedChannels: 'default',
   description: 'View a random image of (the pokemon) quagsire',
 })
-export default class Quag extends Command {
+export default class QuagCommand extends Command {
   public async run(message: Message): Promise<void> {
     const quag = this.client.util.sample(quags);
     void message.util!.send(

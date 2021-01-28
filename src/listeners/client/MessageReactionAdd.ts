@@ -7,7 +7,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   emitter: 'client',
   event: 'messageReactionAdd',
 })
-export default class MessageReactionAdd extends Listener {
+export default class MessageReactionAddListener extends Listener {
   public async exec(reaction: MessageReaction, user: User): Promise<void> {
     if (user.bot) return;
 

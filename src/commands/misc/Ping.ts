@@ -19,7 +19,7 @@ interface Args {
     },
   ],
 })
-export default class Ping extends Command {
+export default class PingCommand extends Command {
   private leaderboard = new Collection<string, number>();
 
   public async run(message: Message, { leaderboard }: Args): Promise<void> {

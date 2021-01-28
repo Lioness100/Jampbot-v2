@@ -13,7 +13,7 @@ interface Args {
   ownerOnly: true,
   args: [{ id: 'content', match: 'rest' }],
 })
-export default class Say extends Command {
+export default class SayCommand extends Command {
   public run(message: Message, { content }: Args): void {
     void message.delete();
     if (content.length) void message.channel.send(content);

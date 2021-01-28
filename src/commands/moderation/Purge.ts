@@ -103,11 +103,12 @@ interface Args {
     return { limit, after, before, user, help };
   },
 })
-export default class Purge extends Command {
+export default class PurgeCommand extends Command {
   public async run(
     message: Message,
     { limit, after, before, user }: Args
   ): Promise<void> {
+    this.client.logger.debug(limit, after?.id, before.id, user);
     let messages = await (message.channel as TextChannel).messages.fetch({
       limit,
       before: before.id,
@@ -115,6 +116,8 @@ export default class Purge extends Command {
     });
 
     if (user) messages = messages.filter((msg) => msg.author.id === user.id);
+
+    this.client.logger.debug(messages.size);
 
     if (!messages.size)
       return message.error(
@@ -127,11 +130,8 @@ export default class Purge extends Command {
     );
 
     message.embed(
-      `${
-        size === messages.size
-          ? `${size} messages were`
-          : `Only ${size} messages could be`
-      } deleted`,
+      `${size} messages were
+       deleted`,
       true
     );
 

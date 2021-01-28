@@ -32,7 +32,7 @@ interface Args {
     },
   ],
 })
-export default class Note extends Command {
+export default class NoteCommand extends Command {
   public async run(message: Message, { note }: Args): Promise<void> {
     const sent = await (message.guild!.channels.cache.get(
       channels.notes

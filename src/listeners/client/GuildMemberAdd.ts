@@ -9,7 +9,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   emitter: 'client',
   event: 'guildMemberAdd',
 })
-export default class GuildMemberAdd extends Listener {
+export default class GuildMemberAddListener extends Listener {
   public async exec(member: GuildMember): Promise<void> {
     try {
       registerFont('./assets/fonts/mario.ttf', {
@@ -51,7 +51,7 @@ export default class GuildMemberAdd extends Listener {
     } catch (e) {
       this.client.logger.error(
         `Paths are still a problem. Exists: `,
-        fs.existsSync('./assets/welcome.png')
+        fs.existsSync('./assets/images/welcome.png')
       );
     }
   }

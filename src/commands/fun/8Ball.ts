@@ -24,7 +24,7 @@ interface Args {
     },
   ],
 })
-export default class EightBall extends Command {
+export default class EightBallCommand extends Command {
   public run(message: Message, { question }: Args): void {
     void message.util!.send(
       message

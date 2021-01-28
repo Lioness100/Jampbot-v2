@@ -22,7 +22,7 @@ interface Args {
     },
   ],
 })
-export default class UserInfo extends Command {
+export default class UserInfoCommand extends Command {
   public run(message: Message, { member }: Args): void {
     void message.util!.send(
       this.client.util

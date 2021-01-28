@@ -5,7 +5,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   emitter: 'process',
   event: 'unhandledRejection',
 })
-export default class UnhandledRejection extends Listener {
+export default class UnhandledRejectionListener extends Listener {
   public exec(reason: Error, promise: Promise<unknown>): void {
     this.client.logger.fatal('Encountered an unhandled rejection: ', promise);
   }

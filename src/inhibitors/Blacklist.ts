@@ -7,7 +7,7 @@ import { blacklist } from '../lib/utils/Constants';
   reason: 'blacklist',
   type: 'pre',
 })
-export default class Blacklist extends Inhibitor {
+export default class BlacklistInhibitor extends Inhibitor {
   public exec(message: Message): boolean {
     return blacklist.includes(message.author.id);
   }

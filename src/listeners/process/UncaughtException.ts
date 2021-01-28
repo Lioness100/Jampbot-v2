@@ -5,7 +5,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   emitter: 'process',
   event: 'uncaughtException',
 })
-export default class UncaughtException extends Listener {
+export default class UncaughtExceptionListener extends Listener {
   public exec(error: Error): void {
     this.client.logger.fatal('Encountered an uncaught exception: ', error);
   }

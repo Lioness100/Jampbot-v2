@@ -18,7 +18,7 @@ interface Args {
     { id: 'silent', match: 'flag', flag: ['--s', '--silent'] },
   ],
 })
-export default class Eval extends Command {
+export default class EvalCommand extends Command {
   public async run(message: Message, args: Args): Promise<unknown> {
     let error = false;
     let result = '';

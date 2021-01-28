@@ -10,7 +10,7 @@ import { carps } from '../../lib/utils/Constants';
   description: 'View a random carp image',
   blockedChannels: 'default',
 })
-export default class Carp extends Command {
+export default class CarpCommand extends Command {
   public async run(message: Message): Promise<void> {
     const carp = this.client.util.sample(carps);
     void message.util!.send(

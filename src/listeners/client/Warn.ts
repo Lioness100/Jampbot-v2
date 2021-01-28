@@ -5,7 +5,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   emitter: 'client',
   event: 'warn',
 })
-export default class Warn extends Listener {
+export default class WarnListener extends Listener {
   public exec(info: string): void {
     this.client.logger.warn(info);
   }

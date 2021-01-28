@@ -33,7 +33,7 @@ interface Args {
     },
   ],
 })
-export default class Unmute extends Command {
+export default class UnmuteCommand extends Command {
   public async run(message: Message, { member, reason }: Args): Promise<void> {
     const mute = await this.client.db.Mutes.findOne({ member: member.id });
     if (!mute?.active) return message.error(`${member.user.tag} is not muted`);
