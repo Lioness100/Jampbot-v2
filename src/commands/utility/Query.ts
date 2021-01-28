@@ -38,6 +38,10 @@ export default class Query extends Command {
   private wolfram = new WolframApp(process.env.WOLFRAM_APP_ID!);
 
   public async run(message: Message, { query, advanced }: Args): Promise<void> {
+    await message.util!.send(
+      message.embed(`🤖  Quering Wolfram...`).setColor('BLUE')
+    );
+
     const result = await this.wolfram.calculate(query);
 
     if (result.error) return message.error("That's not a valid query");
