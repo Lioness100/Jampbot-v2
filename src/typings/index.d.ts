@@ -35,6 +35,7 @@ declare module 'discord-akairo' {
     fetch(url: string): Promise<import('../lib/utils/Constants').Response>;
     progressBar(value: number, max: number): string;
     upper(string: string): string;
+    chunk<T>(arr: T[], size: number): T[][];
     ordinal(num: number): string;
     sample<T>(arr: T[]): T;
     tap<T>(value: T): T;
@@ -54,6 +55,7 @@ declare module 'discord.js' {
       useUtil = true
     ): import('../lib/structures/EnhancedEmbed').default;
     error(message: string, explanation?: string, useUtil = true): void;
+    reactAll(...emojis: import('discord.js').EmojiResolvable[]): Promise<void>;
   }
 }
 

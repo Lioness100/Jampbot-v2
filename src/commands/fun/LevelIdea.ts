@@ -40,7 +40,7 @@ export default class LevelIdeaCommand extends Command {
       );
 
     const sent = await message.util!.send(idea());
-    const selfReact = await sent.react('🔁');
+    await sent.react('🔁');
 
     const collector = sent.createReactionCollector(
       (reaction: MessageReaction, user: User) =>
@@ -61,7 +61,7 @@ export default class LevelIdeaCommand extends Command {
     });
 
     collector.on('end', () => {
-      void selfReact.remove();
+      if (!sent.deleted) void sent.reactions.removeAll();
     });
   }
 

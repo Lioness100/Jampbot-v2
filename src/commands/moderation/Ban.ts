@@ -85,13 +85,12 @@ export default class BanCommand extends Command {
         ])
     );
 
-    await sent.react('✅');
-    await sent.react('❌');
+    const emojis = ['✅', '❌'];
+    await sent.reactAll(...emojis);
 
     const collected = await sent.awaitReactions(
       (reaction: MessageReaction, user: User) =>
-        user.id === message.author.id &&
-        ['✅', '❌'].includes(reaction.emoji.name),
+        user.id === message.author.id && emojis.includes(reaction.emoji.name),
       { max: 1, time: 30000 }
     );
 

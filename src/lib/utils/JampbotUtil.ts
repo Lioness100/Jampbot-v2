@@ -96,6 +96,12 @@ export default class JampbotUtil extends ClientUtil {
     return arr[~~(Math.random() * arr.length)];
   }
 
+  public chunk<T>(arr: T[], size: number): T[][] {
+    return [
+      ...(Array(Math.ceil(arr.length / size)) as undefined[]),
+    ].map((_, i) => arr.slice(size * i, size + size * i));
+  }
+
   public ordinal(num: number): string {
     return `${num}${
       [, 'st', 'nd', 'rd'][(num / 10) % 10 ^ 1 && num % 10] || 'th'

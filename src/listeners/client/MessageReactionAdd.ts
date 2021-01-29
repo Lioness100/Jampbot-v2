@@ -9,7 +9,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 })
 export default class MessageReactionAddListener extends Listener {
   public async exec(reaction: MessageReaction, user: User): Promise<void> {
-    if (user.bot) return;
+    if (!user || user.bot) return;
 
     try {
       if (reaction.partial) await reaction.fetch();

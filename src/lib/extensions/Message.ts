@@ -1,4 +1,4 @@
-import { Structures, Message } from 'discord.js';
+import { Structures, Message, EmojiResolvable } from 'discord.js';
 import { emotes } from '../utils/Constants';
 import EnhancedEmbed from '../structures/EnhancedEmbed';
 
@@ -34,6 +34,12 @@ export default Structures.extend(
           },
           useUtil
         );
+      }
+
+      public async reactAll(...emojis: EmojiResolvable[]): Promise<void> {
+        for (const emoji of emojis) {
+          await this.react(emoji);
+        }
       }
     }
 );
