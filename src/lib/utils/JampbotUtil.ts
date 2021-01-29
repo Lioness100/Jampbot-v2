@@ -77,12 +77,29 @@ export default class JampbotUtil extends ClientUtil {
       });
   }
 
+  public progressBar(value: number, max: number): string {
+    const percentage = value / max;
+    const progress = Math.round(12 * percentage);
+
+    const progressText = '<:green:804506477905182781>'.repeat(progress);
+    const emptyProgressText = '<:red:804506508682461194>'.repeat(12 - progress);
+    const percentageText = `${Math.round(percentage * 100)}%`;
+
+    return `${progressText}${emptyProgressText} ${percentageText}`;
+  }
+
   public upper(string: string): string {
     return string[0].toUpperCase() + string.slice(1);
   }
 
   public sample<T>(arr: T[]): T {
     return arr[~~(Math.random() * arr.length)];
+  }
+
+  public ordinal(num: number): string {
+    return `${num}${
+      [, 'st', 'nd', 'rd'][(num / 10) % 10 ^ 1 && num % 10] || 'th'
+    }`;
   }
 
   public tap<T>(value: T): T {

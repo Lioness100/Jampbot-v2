@@ -23,7 +23,12 @@ export default class Levels extends Entity {
     client: JampbotClient,
     limit = 10
   ): Promise<Leaderboard[]> {
-    const leaderboard = await this.find({}).limit(limit).sort('xp');
+    const leaderboard = await this.find({})
+      .limit(limit)
+      .sort([['xp', 'descending']])
+      .exec();
+
+    client.logger.debug(leaderboard.map(({ xp }) => xp));
     return Promise.all(
       leaderboard.map(async ({ id, xp, level }, idx) => ({
         xp,

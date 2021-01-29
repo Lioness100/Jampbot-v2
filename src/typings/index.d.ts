@@ -33,7 +33,9 @@ declare module 'discord-akairo' {
       data?: MessageEmbedOptions
     ): import('../lib/structures/EnhancedEmbed').default;
     fetch(url: string): Promise<import('../lib/utils/Constants').Response>;
+    progressBar(value: number, max: number): string;
     upper(string: string): string;
+    ordinal(num: number): string;
     sample<T>(arr: T[]): T;
     tap<T>(value: T): T;
   }
