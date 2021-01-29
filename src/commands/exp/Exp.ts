@@ -8,7 +8,7 @@ interface Args {
 }
 
 @ApplyOptions<CommandOptions>('exp', {
-  aliases: ['exp'],
+  aliases: ['exp', 'xp'],
   description: "View you or someone else's exp",
   usage: '[member]',
   examples: ['Lioness100'],
@@ -54,7 +54,7 @@ export default class ExpCommand extends Command {
         { name: 'Level', value: levels.level },
         {
           name: 'Leaderboard Position',
-          value: this.client.util.ordinal(position),
+          value: `${this.client.util.ordinal(position)} Place`,
         },
         {
           name: 'Points Needed For Level Up',
