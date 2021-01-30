@@ -41,8 +41,6 @@ export default class ExpCommand extends Command {
           .exec()
       ).findIndex(({ id }) => id === member.id) + 1;
 
-    this.client.logger.debug(position);
-
     const bar = this.client.util.progressBar(
       levels.xp,
       this.client.db.Levels.xpFor(levels.level + 1)

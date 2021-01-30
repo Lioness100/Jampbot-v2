@@ -73,27 +73,23 @@ export default class CommandsCommand extends Command {
                 value: command.argDescriptions
                   .map(
                     (arg) =>
-                      `> Descriptor: \`${arg.id}\`\n${
-                        arg.type
-                          ? `Type: ${
-                              typeof arg.type === 'string' ? arg.type : 'custom'
-                            }\n`
-                          : ''
-                      }${
-                        !['function', 'undefined'].includes(typeof arg.default)
-                          ? `> Default: ${arg.default}\n`
-                          : ''
-                      }${
-                        arg.flag
-                          ? commaListsAnd`> Flag Alias(es): ${this.inline(
-                              [arg.flag].flat()
-                            )}\n`
-                          : ''
-                      }${
-                        arg.description
-                          ? `> Description: ${arg.description}\n`
-                          : ''
-                      }`
+                      `> Descriptor: \`${arg.id}\`\n${this.exists(
+                        arg.type,
+                        `Type: ${
+                          typeof arg.type === 'string' ? arg.type : 'custom'
+                        }\n`
+                      )}${this.exists(
+                        !['function', 'undefined'].includes(typeof arg.default),
+                        `> Default: ${arg.default}\n`
+                      )}${this.exists(
+                        arg.flag,
+                        commaListsAnd`> Flag Alias(es): ${this.inline(
+                          [arg.flag!].flat()
+                        )}\n`
+                      )}${this.exists(
+                        arg.description,
+                        `> Description: ${arg.description}\n`
+                      )}`
                   )
                   .join('\n'),
               },
@@ -130,5 +126,9 @@ export default class CommandsCommand extends Command {
 
   private inline(array: string[]) {
     return array.map((str) => `\`${str}\``);
+  }
+
+  private exists(value: unknown, ifTrue: string) {
+    return value ? ifTrue : '';
   }
 }
