@@ -8,7 +8,7 @@ import {
 import type { Guild, Message } from 'discord.js';
 import { units } from '../utils/Constants';
 import { JampbotUtil, logger } from '../utils';
-import { TaskHandler, Database } from '.';
+import { TaskHandler, Database } from '../structures';
 
 export default class JampbotClient extends AkairoClient {
   public logger = logger;
@@ -91,6 +91,7 @@ export default class JampbotClient extends AkairoClient {
         properties: {
           $browser: 'Discord Android',
         },
+        intents: ['GUILD_MEMBERS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS'],
       },
       partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
     });
