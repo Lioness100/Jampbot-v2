@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.9.0...v1.10.0) (2021-01-30)
+
+
+### Features
+
+* **command:** :sparkles: exp cmd ([910f8eb](https://github.com/Lioness100/Jampbot-v2/commit/910f8eb94f17475bf250643645b9ed8d373186ee))
+* **command:** :sparkles: leaderboard cmd ([23a1f54](https://github.com/Lioness100/Jampbot-v2/commit/23a1f5482bf7edcb568e127568eb94f4d9e4c99b))
+
+
+### Bug Fixes
+
+* **command:** :bug: ([c3f2d43](https://github.com/Lioness100/Jampbot-v2/commit/c3f2d4353a7b8b23e9b2ea071b0a744f9991db45))
+* **listener:** :bug: alias ([bc84ec3](https://github.com/Lioness100/Jampbot-v2/commit/bc84ec380c87d77137864d65cb894fe37797d172))
+* **listener:** :bug: i give up ([cc84797](https://github.com/Lioness100/Jampbot-v2/commit/cc84797d20b1b85112bcf5d3180c4b48c15c15c7))
+
 ## [1.9.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.8.0...v1.9.0) (2021-01-28)
 
 
