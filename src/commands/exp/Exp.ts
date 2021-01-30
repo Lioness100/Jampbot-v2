@@ -12,6 +12,7 @@ interface Args {
   description: "View you or someone else's exp",
   usage: '[member]',
   examples: ['Lioness100'],
+  blockedChannels: 'default',
   args: [
     {
       id: 'member',

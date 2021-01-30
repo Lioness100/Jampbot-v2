@@ -13,6 +13,7 @@ interface Args {
   description: 'View the exp leaderboard',
   usage: '[--paginate]',
   examples: ['--paginate'],
+  blockedChannels: 'default',
   args: [
     {
       id: 'paginate',
