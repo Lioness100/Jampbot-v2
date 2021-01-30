@@ -3,7 +3,7 @@ import { formatDistanceToNowStrict } from 'date-fns';
 import type { TextChannel } from 'discord.js';
 import type { AkairoClient } from 'discord-akairo';
 import { channels } from '../lib/utils/Constants';
-import type JampbotClient from '../lib/structures/JampbotClient';
+import type JampbotClient from '../lib/client/JampbotClient';
 import Entity from './Entity';
 
 export default class Mutes extends Entity {

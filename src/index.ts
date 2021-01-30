@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import JampbotClient from './lib/structures/JampbotClient';
+import JampbotClient from './lib/client/JampbotClient';
 import './lib/extensions';
 
 config();

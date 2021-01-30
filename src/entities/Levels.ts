@@ -1,5 +1,5 @@
 import { DocumentType, prop, ReturnModelType } from '@typegoose/typegoose';
-import type JampbotClient from '../lib/structures/JampbotClient';
+import type JampbotClient from '../lib/client/JampbotClient';
 import { Leaderboard } from '../lib/utils/Constants';
 import Entity from './Entity';
 
