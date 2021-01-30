@@ -5,7 +5,7 @@ import {
   InhibitorHandler,
   ListenerHandler,
 } from 'discord-akairo';
-import type { Guild, Message } from 'discord.js';
+import { Guild, Message, Intents } from 'discord.js';
 import { units } from '../utils/Constants';
 import { JampbotUtil, logger } from '../utils';
 import { TaskHandler, Database } from '../structures';
@@ -91,7 +91,16 @@ export default class JampbotClient extends AkairoClient {
         properties: {
           $browser: 'Discord Android',
         },
-        intents: ['GUILD_MEMBERS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS'],
+        intents: new Intents(Intents.ALL).remove(
+          'DIRECT_MESSAGE_TYPING',
+          'GUILD_BANS',
+          'GUILD_EMOJIS',
+          'GUILD_INTEGRATIONS',
+          'GUILD_INVITES',
+          'GUILD_MESSAGE_TYPING',
+          'GUILD_WEBHOOKS',
+          'GUILD_VOICE_STATES'
+        ),
       },
       partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
     });
