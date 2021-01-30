@@ -53,8 +53,11 @@ export default class JampbotUtil extends ClientUtil {
     ];
   }
 
-  public fetch(url: string): Promise<Response> {
-    return fetch(url)
+  public fetch(
+    url: string,
+    headers?: Record<string, string>
+  ): Promise<Response> {
+    return fetch(url, headers && { headers })
       .then(async (res) => {
         const isJson = res.headers
           .get('content-type')
