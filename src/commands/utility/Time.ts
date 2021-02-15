@@ -36,10 +36,11 @@ export default class TimeCommand extends Command {
 
     const $ = load(result.body as Buffer);
 
+    const clock = $('#clock').contents();
     const date = new Date(
       `${($('#dd').contents()[0] as { data: string }).data!.split(', w')[0]} ${
-        $('#clock').contents()[0].data
-      }`
+        clock[0].data
+      } ${clock.contents()[0].data}`
     );
 
     message.embed(
