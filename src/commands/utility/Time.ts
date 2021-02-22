@@ -40,7 +40,7 @@ export default class TimeCommand extends Command {
     const date = new Date(
       `${($('#dd').contents()[0] as { data: string }).data!.split(', w')[0]} ${
         clock[0].data
-      } ${clock.contents()[0].data}`
+      } ${clock.contents()[1].data}`
     );
 
     message.embed(
