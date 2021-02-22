@@ -38,15 +38,15 @@ export default class TimeCommand extends Command {
 
     const clock = $('#clock').contents();
     const date = new Date(
-      `${($('#dd').contents()[0] as { data: string }).data!.split(', w')[0]} ${
-        clock[0].data
-      } ${clock.contents()[1].data}`
+      `${$('#dd').contents()[0].data} ${clock[0].data} ${
+        clock.contents()[1].data
+      }`
     );
 
     message.embed(
       `${clocks[date.getHours() % 12]}  It is currently ${format(
         date,
-        'EEEE, MMMM Do yyyy @ h:mm a'
+        'EEEE, MMMM do yyyy @ h:mm a'
       )}, in ${
         /(?:Time in )?((?:[A-Z]\w+\s?)+) (?:now - Time\.is|- exact time now - Time\.is)/.exec(
           $('title').contents()[0].data!
