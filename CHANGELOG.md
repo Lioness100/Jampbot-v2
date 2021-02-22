@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.10.0...v1.11.0) (2021-02-22)
+
+
+### Features
+
+* **command:** :sparkles: hangmab ([66803ff](https://github.com/Lioness100/Jampbot-v2/commit/66803ff07d8c24e41c36f9e25631f975de4ea30b))
+* **command:** :sparkles: metadata ([eef3e85](https://github.com/Lioness100/Jampbot-v2/commit/eef3e856296e10a27d2c7489df9e56ab1f3bda52))
+
+
+### Bug Fixes
+
+* **command:** :bug: am/pm ([162d866](https://github.com/Lioness100/Jampbot-v2/commit/162d866515252f23ae301b9708fde03a1c4d945b))
+* **command:** :bug: am/pm p2 ([38f588a](https://github.com/Lioness100/Jampbot-v2/commit/38f588afa052f6adc317c79ee7b2af187858fd7d))
+* **command:** :bug: count day of month, not of year ([ce1d21e](https://github.com/Lioness100/Jampbot-v2/commit/ce1d21ea57ae2febef09cd874ec05405abcdb493))
+* :bug: corrected paths ([97dde62](https://github.com/Lioness100/Jampbot-v2/commit/97dde621886f319e7b1f3883764f8509f2689146))
+* :sparkles: fixed intents ([4f3a0d6](https://github.com/Lioness100/Jampbot-v2/commit/4f3a0d614b78c55a080752c8060befccda1484f7))
+
 ## [1.10.0](https://github.com/Lioness100/Jampbot-v2/compare/v1.9.0...v1.10.0) (2021-01-30)
 
 
