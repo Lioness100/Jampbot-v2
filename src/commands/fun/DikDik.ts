@@ -20,7 +20,7 @@ export default class DikDikCommand extends Command {
     void message.util!.send(
       message
         .embed()
-        .setColor(await getColor(dikdik))
+        .setColor(await getColor(dikdik).catch(() => 'GREEN'))
         .setImage(dikdik)
     );
   }
