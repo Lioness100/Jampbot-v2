@@ -534,6 +534,8 @@ export const carps = [
   'https://www.thespruceeats.com/thmb/jwSDfYAZHSWUFoXKQXNamY2EtNg=/1414x795/smart/filters:no_upscale()/Baked-carp-fish-GettyImages-511687898-591f276b5f9b58f4c010e600.jpg',
   'https://www.reeladventurefishing.com/wp-content/uploads/2019/10/Lake-Heritage-scaley-mirror-carp-e1572367256440.jpg',
   'https://static01.nyt.com/images/2019/06/15/science/15TB-CARP-carp-inyt/merlin_155592234_45c80acf-337a-477b-ad9a-983552d9fbc4-facebookJumbo.jpg?year=2019&h=550&w=1050&sig=0xc5b4dfd616fed6555fb1a119d5dae745',
+  'https://media.discordapp.net/attachments/699612856018272289/812801778365235250/image0.jpg',
+  'https://cdn.discordapp.com/attachments/699612856018272289/813247584118374450/image0.jpg',
 ];
 
 export const questions = [
@@ -711,4 +713,5 @@ export const axolotls = [
   'https://www.elephango.com/images/RCLG/axolotl-close-up-13331.jpg',
   'https://www.fishkeeper.co.uk/media/databank/images/image//a/x/axolotl_ambystoma_mexicanum_.jpg',
   'https://petaxolotl.com/wp-content/uploads/2020/06/axolotl-5032022_960_720.jpg',
+  'https://cdn.discordapp.com/attachments/699612856018272289/813947963549941790/image0.png',
 ];
