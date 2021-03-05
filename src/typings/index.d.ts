@@ -28,7 +28,9 @@ declare module 'discord-akairo' {
   }
 
   interface ClientUtil {
-    getMemberInfo(member: GuildMember): import('discord.js').EmbedFieldData[];
+    getMemberInfo(
+      member: GuildMember
+    ): Promise<import('discord.js').EmbedFieldData[]>;
     embed(
       data?: MessageEmbedOptions
     ): import('../lib/structures/EnhancedEmbed').default;

@@ -23,7 +23,7 @@ interface Args {
   ],
 })
 export default class UserInfoCommand extends Command {
-  public run(message: Message, { member }: Args): void {
+  public async run(message: Message, { member }: Args): Promise<void> {
     void message.util!.send(
       this.client.util
         .embed()
@@ -32,7 +32,7 @@ export default class UserInfoCommand extends Command {
         .setThumbnail(
           member.user.displayAvatarURL({ dynamic: true, size: 4096 })
         )
-        .addFields(this.client.util.getMemberInfo(member))
+        .addFields(await this.client.util.getMemberInfo(member))
         .setFooter(`ID: ${member.id}`)
     );
   }

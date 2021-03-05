@@ -18,7 +18,7 @@ export default class JampbotUtil extends ClientUtil {
     return new EnhancedEmbed(data);
   }
 
-  public getMemberInfo(member: GuildMember): EmbedFieldData[] {
+  public async getMemberInfo(member: GuildMember): Promise<EmbedFieldData[]> {
     return [
       {
         name: 'Member Joined:',
@@ -48,7 +48,9 @@ export default class JampbotUtil extends ClientUtil {
       },
       {
         name: 'EXP:',
-        value: 'TODO',
+        value: `${
+          (await this.client.db.Levels.findOne({ id: member.id }))?.xp ?? 0
+        } ⭐`,
       },
     ];
   }

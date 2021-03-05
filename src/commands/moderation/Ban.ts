@@ -73,7 +73,7 @@ export default class BanCommand extends Command {
       message
         .embed(`Are you sure you want to ban ${member.user.tag}?`)
         .addFields([
-          this.client.util.getMemberInfo(member)[0],
+          (await this.client.util.getMemberInfo(member))[0],
           {
             name: 'Mutes',
             value: `${

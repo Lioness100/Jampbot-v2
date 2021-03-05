@@ -9,13 +9,13 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
   event: 'guildMemberRemove',
 })
 export default class GuildMemberRemoveListener extends Listener {
-  public exec(member: GuildMember): void {
+  public async exec(member: GuildMember): Promise<void> {
     void (member.guild.channels.cache.get(channels.log) as TextChannel).send(
       new EnhancedEmbed()
         .personalize(member)
         .setColor('RED')
         .setTitle(`${member.user.tag} left the server`)
-        .addFields(this.client.util.getMemberInfo(member))
+        .addFields(await this.client.util.getMemberInfo(member))
         .setFooter(`ID ${member.id}`)
         .setTimestamp()
     );
