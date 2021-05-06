@@ -161,8 +161,8 @@ export default class JampbotClient extends AkairoClient {
     this.listenerHandler.loadAll();
     logger.info(`Loaded ${this.listenerHandler.modules.size} listeners`);
 
-    this.taskHandler.loadAll();
-    logger.info(`Loaded ${this.taskHandler.modules.size} tasks`);
+    // this.taskHandler.loadAll();
+    // logger.info(`Loaded ${this.taskHandler.modules.size} tasks`);
 
     await this.db.init();
     await this.db.Mutes.startTimers(this);
