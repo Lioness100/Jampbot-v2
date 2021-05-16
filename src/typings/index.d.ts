@@ -67,3 +67,24 @@ declare module 'discord.js' {
 declare module 'colorthief' {
   export function getColor(image: string): Promise<[number, number, number]>;
 }
+
+declare module 'deepai' {
+  interface TextGeneratorParams {
+    text: string;
+  }
+
+  interface TextGeneratorResult {
+    id: string;
+    output: string;
+  }
+
+  export function setApiKey(key: string): void;
+  export function callStandardApi(
+    api: 'text-generator',
+    params: TextGeneratorParams
+  ): Promise<TextGeneratorResult>;
+}
+
+declare module 'coolstory.js' {
+  export function title(): string;
+}

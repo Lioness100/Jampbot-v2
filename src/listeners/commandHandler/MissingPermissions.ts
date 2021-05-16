@@ -14,6 +14,7 @@ export default class MissingPermissionsListener extends Listener {
     _type: string,
     missing: string[] | string
   ): void {
+    console.log(missing);
     this.client.logger.debug(
       commaListsAnd`${message.author.tag} lacked permissions when executing command '${command.id}'`
     );
