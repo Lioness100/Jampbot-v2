@@ -11,11 +11,11 @@ export default class Levels extends Entity {
   public level!: number;
 
   public static levelFor(xp: number): number {
-    return ~~(0.1 * Math.sqrt(xp));
+    return ~~(xp > 62500 ? 25 + (xp - 62500) / 5000 : ~~(0.1 * Math.sqrt(xp)));
   }
 
   public static xpFor(level: number): number {
-    return level ** 2 * 100;
+    return ~~(level > 25 ? 5000 * (level - 24) + 57600 : level ** 2 * 100);
   }
 
   public static async calculateLeaderboard(
