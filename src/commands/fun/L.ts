@@ -13,7 +13,6 @@ import Command from '../../lib/structures/Command';
     'r',
     'kek',
     'kekw',
-    'k',
     'j',
     'jebaited',
   ],
