@@ -4,18 +4,7 @@ import ApplyOptions from '../../lib/utils/ApplyOptions';
 import Command from '../../lib/structures/Command';
 
 @ApplyOptions<CommandOptions>('l', {
-  aliases: [
-    'l',
-    'lul',
-    'kappa',
-    'k',
-    'reggie',
-    'r',
-    'kek',
-    'kekw',
-    'j',
-    'jebaited',
-  ],
+  aliases: ['l', 'lul', 'kappa', 'k', 'reggie', 'kek', 'kekw', 'j', 'jebaited'],
   description: 'Show your amusement regarding the above message',
 })
 export default class LCommand extends Command {
