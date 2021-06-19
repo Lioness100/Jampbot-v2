@@ -22,7 +22,7 @@ interface Args {
       ["704378683988639834", "801180526740373544"].includes(id)
     )
       ? null
-      : true;
+      : true,
   args: [
     {
       id: 'member',
