@@ -18,7 +18,7 @@ interface Args {
   examples: ['@Lioness100 spamming', 'Lioness --duration 2d'],
   channel: 'guild',
   userPermissions: (message: Message) => 
-    message.member.roles.cache.some(({ id }) =>
+    message.member!.roles.cache.some(({ id }) =>
       ["704378683988639834", "801180526740373544"].includes(id)
     )
       ? null
