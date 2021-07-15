@@ -17,7 +17,12 @@ interface Args {
   usage: '<member> [reason] [--duration <duration>]',
   examples: ['@Lioness100 spamming', 'Lioness --duration 2d'],
   channel: 'guild',
-  userPermissions: 'MANAGE_ROLES',
+  userPermissions: (message: Message) => 
+    message.member!.roles.cache.some(({ id }) =>
+      ["704378683988639834", "801180526740373544"].includes(id)
+    )
+      ? null
+      : true,
   args: [
     {
       id: 'member',
