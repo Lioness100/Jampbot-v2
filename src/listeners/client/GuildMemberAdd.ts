@@ -35,14 +35,14 @@ export default class GuildMemberAddListener extends Listener {
     ctx.closePath();
     ctx.clip();
 
-    const avatar = await loadImage(
-      member.user.displayAvatarURL({ format: 'png', size: 4096 })
+    const icon = await loadImage(
+      member.guild.iconURL({ format: 'png', size: 4096 })!
     );
-    ctx.drawImage(avatar, 25, 25, 200, 200);
+    ctx.drawImage(icon, 25, 25, 200, 200);
 
-    void (member.guild.channels.cache.get(
-      channels.welcome
-    ) as TextChannel).send(
+    void (
+      member.guild.channels.cache.get(channels.welcome) as TextChannel
+    ).send(
       `Hey ${member}, welcome to **Team Jamp!** To gain access to the rest of the Discord, please read <#${channels.rules}> and agree to the message near the bottom!\n\Have a great time, and remember to contact a mod with any questions ${emotes.pog}`,
       { files: [canvas.toBuffer()] }
     );
