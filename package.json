@@ -43,7 +43,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/cheerio": "^0.22.23",
-    "@types/common-tags": "^1.8.0",
+    "@types/common-tags": "^1.8.1",
     "@types/mongoose": "^5.10.3",
     "@types/node": "^14.14.20",
     "@types/node-fetch": "^2.5.7",
