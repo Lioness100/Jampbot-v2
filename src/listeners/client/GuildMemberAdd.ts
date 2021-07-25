@@ -40,10 +40,10 @@ export default class GuildMemberAddListener extends Listener {
     );
     ctx.drawImage(icon, 25, 25, 200, 200);
 
-    void (
-      member.guild.channels.cache.get(channels.welcome) as TextChannel
-    ).send(
-      `Hey ${member}, welcome to **Team Jamp!** To gain access to the rest of the Discord, please read <#${channels.rules}> and agree to the message near the bottom!\n\Have a great time, and remember to contact a mod with any questions ${emotes.pog}`,
+    void (member.guild.channels.cache.get(
+      channels.welcome
+    ) as TextChannel).send(
+      `Hey ${member}, welcome to **Team Jamp!** To find out more about what we do hear, please read <#${channels.information}>!\n\Have a great time, and remember to contact a mod with any questions ${emotes.pog}`,
       { files: [canvas.toBuffer()] }
     );
   }

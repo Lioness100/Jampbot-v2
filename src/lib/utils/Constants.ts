@@ -25,6 +25,7 @@ export const logLevels = {
 
 export const channels = {
   welcome: '710497845278670989',
+  information: '868884778768801842',
   log: '699230720392167482',
   levelRules: '699220818374295633',
   rules: '699220667484078131',
